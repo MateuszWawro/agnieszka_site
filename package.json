@@ -12,7 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/MateuszWawro/agnieszka_site.git"
   },
-  "keywords": ["portfolio", "nextjs", "architecture", "cv"],
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "architecture",
+    "cv"
+  ],
   "author": "Agnieszka Wawro",
   "license": "ISC",
   "bugs": {
@@ -31,6 +36,6 @@
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.24",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^3.4.19"
   }
 }
