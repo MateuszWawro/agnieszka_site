@@ -1,25 +1,10 @@
-import Image from 'next/image';
-
 const Hero = () => {
   return (
     <section id="about" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-light">
       <div className="container-custom section-padding">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image */}
-          <div className="flex justify-center md:justify-end order-1 md:order-2">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-primary shadow-2xl">
-              <Image
-                src="https://via.placeholder.com/400x400/F5C2C7/1A1A1A?text=AW"
-                alt="Agnieszka Wawro"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-
+        <div className="flex justify-center items-center">
           {/* Content */}
-          <div className="text-center md:text-left order-2 md:order-1">
+          <div className="text-center max-w-4xl">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-dark">
               AGNIESZKA WAWRO
             </h1>
