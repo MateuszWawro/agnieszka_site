@@ -11,7 +11,7 @@ Nowoczesna strona portfolio dla Agnieszki Wawro - inżyniera architekta, student
 
 ## 📋 Wymagania
 
-- Node.js 18 lub nowszy
+- Node.js 20 lub nowszy
 - npm lub yarn
 - Docker i Docker Compose (opcjonalnie)
 
