@@ -989,8 +989,16 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-white\/70 {
+  color: #ffffffb3;
+}
+
 .text-white\/90 {
   color: #ffffffe6;
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .antialiased {
@@ -1234,6 +1242,10 @@ html {
 .hover\:text-primary-dark:hover {
   --tw-text-opacity: 1;
   color: rgb(232 155 163 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-white\/90:hover {
+  color: #ffffffe6;
 }
 
 .hover\:shadow-2xl:hover {

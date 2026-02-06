@@ -914,19 +914,43 @@ const Contact = ()=>{
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
                 className: "container-custom relative z-10 mt-16 pt-8 border-t border-white/20 text-center text-white/90",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "font-medium",
-                    children: [
-                        "© ",
-                        new Date().getFullYear(),
-                        " Agnieszka Wawro. Wszystkie prawa zastrzeżone."
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/app/components/Contact.tsx",
-                    lineNumber: 75,
-                    columnNumber: 9
-                }, ("TURBOPACK compile-time value", void 0))
-            }, void 0, false, {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "font-medium",
+                        children: [
+                            "© ",
+                            new Date().getFullYear(),
+                            " Agnieszka Wawro. Wszystkie prawa zastrzeżone."
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/components/Contact.tsx",
+                        lineNumber: 75,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "mt-2 text-sm text-white/70",
+                        children: [
+                            "Developed by",
+                            ' ',
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: "https://wawro.ovh",
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                                className: "text-white hover:text-white/90 underline transition-colors duration-300",
+                                children: "wawro"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Contact.tsx",
+                                lineNumber: 78,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/components/Contact.tsx",
+                        lineNumber: 76,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0))
+                ]
+            }, void 0, true, {
                 fileName: "[project]/app/components/Contact.tsx",
                 lineNumber: 74,
                 columnNumber: 7
