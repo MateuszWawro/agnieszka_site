@@ -33,7 +33,7 @@ The application runs on:
 - **Internal port**: 3000 (inside the container)
 - **External port**: 3001 (accessible from VPS)
 
-This is configured in `docker compose.yml`:
+This is configured in `docker-compose.yml`:
 ```yaml
 ports:
   - "3001:3000"
@@ -194,7 +194,7 @@ sudo ufw enable
 
 ### 4. Set up monitoring
 Consider using:
-- Docker health checks (already configured in docker compose.yml)
+- Docker health checks (already configured in docker-compose.yml)
 - Uptime monitoring services
 - Log aggregation tools
 
