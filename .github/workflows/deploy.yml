@@ -1,0 +1,36 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Stop existing containers
+        run: |
+          cd ${{ github.workspace }}
+          docker compose down || true
+
+      - name: Build and start containers
+        run: |
+          cd ${{ github.workspace }}
+          docker compose up -d --build
+
+      - name: Clean up old images
+        run: |
+          docker image prune -af --filter "until=24h"
+
+      - name: Verify deployment
+        run: |
+          echo "Waiting for container to be ready..."
+          sleep 10
+          docker ps | grep agnieszka-portfolio || exit 1
+          echo "Deployment successful! Application is running on port 3001"
