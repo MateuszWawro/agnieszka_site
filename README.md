@@ -200,7 +200,7 @@ npm run lint     # Sprawdź kod (linting)
 
 ## 📄 Licencja
 
-© 2024 Agnieszka Wawro. Wszystkie prawa zastrzeżone.
+© 2026 Agnieszka Wawro. Wszystkie prawa zastrzeżone.
 
 ## 📞 Kontakt
 
