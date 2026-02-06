@@ -21,38 +21,58 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-br from-primary to-primary-dark">
-      <div className="container-custom">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+    <section id="contact" className="section-padding bg-gradient-to-br from-primary via-primary-dark to-primary relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+      
+      <div className="container-custom relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">
           Kontakt
         </h2>
+        <div className="h-1 w-24 bg-white/80 mx-auto rounded-full mb-16"></div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {contactInfo.map((item, index) => (
             <a
               key={index}
               href={item.href}
-              className="bg-white rounded-lg p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center group"
+              className="group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 text-center overflow-hidden"
             >
-              <div className="text-5xl mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-600 mb-2">{item.label}</h3>
-              <p className="text-dark font-bold group-hover:text-primary-dark transition-colors duration-200">
+              {/* Hover gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary-dark/0 group-hover:from-primary/5 group-hover:to-primary-dark/5 transition-all duration-300"></div>
+              
+              {/* Icon with animation */}
+              <div className="relative text-6xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                {item.icon}
+              </div>
+              
+              <h3 className="relative text-lg font-semibold text-gray-600 mb-2 uppercase tracking-wide">
+                {item.label}
+              </h3>
+              
+              <p className="relative text-dark font-bold group-hover:text-primary-dark transition-colors duration-300">
                 {item.value}
               </p>
+
+              {/* Bottom accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-dark to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
             </a>
           ))}
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-white text-lg">
-            Zapraszam do kontaktu w sprawie współpracy lub projektów architektonicznych
-          </p>
+          <div className="inline-block bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-6">
+            <p className="text-white text-lg font-medium">
+              Zapraszam do kontaktu w sprawie współpracy lub projektów architektonicznych
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="mt-16 pt-8 border-t border-white/20 text-center text-white/80">
-        <p>&copy; {new Date().getFullYear()} Agnieszka Wawro. Wszystkie prawa zastrzeżone.</p>
+      <footer className="container-custom relative z-10 mt-16 pt-8 border-t border-white/20 text-center text-white/90">
+        <p className="font-medium">&copy; {new Date().getFullYear()} Agnieszka Wawro. Wszystkie prawa zastrzeżone.</p>
       </footer>
     </section>
   );

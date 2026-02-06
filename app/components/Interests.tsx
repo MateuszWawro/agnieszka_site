@@ -18,23 +18,36 @@ const Interests = () => {
   ];
 
   return (
-    <section id="interests" className="section-padding bg-gray-light">
-      <div className="container-custom">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-dark">
+    <section id="interests" className="section-padding bg-white relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-primary-dark/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      
+      <div className="container-custom relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark">
           Zainteresowania
         </h2>
+        <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-16"></div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {interests.map((interest, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group relative bg-gradient-to-br from-white to-gray-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 overflow-hidden"
             >
-              <div className="text-6xl mb-4 text-center">{interest.icon}</div>
-              <h3 className="text-xl font-bold text-primary-dark mb-3 text-center">
+              {/* Decorative top corner */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-primary/10 rounded-br-full"></div>
+              
+              {/* Icon with animation */}
+              <div className="relative z-10 text-7xl mb-6 text-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                {interest.icon}
+              </div>
+              
+              <h3 className="relative z-10 text-xl font-bold text-primary-dark mb-4 text-center group-hover:text-dark transition-colors duration-300">
                 {interest.title}
               </h3>
-              <p className="text-gray-700 leading-relaxed text-center">
+              
+              <p className="relative z-10 text-gray-700 leading-relaxed text-center">
                 {interest.description}
               </p>
             </div>

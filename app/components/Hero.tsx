@@ -1,35 +1,57 @@
+'use client';
+
 const Hero = () => {
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-light">
-      <div className="container-custom section-padding">
+    <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-light to-primary/10">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated gradient orbs */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-dark/10 rounded-full blur-3xl animate-float-delayed"></div>
+        
+        {/* Geometric shapes */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary-dark/40 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-primary/60 rounded-full animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-primary-dark/40 rounded-full animate-pulse"></div>
+      </div>
+
+      <div className="container-custom section-padding relative z-10">
         <div className="flex justify-center items-center">
           {/* Content */}
           <div className="text-center max-w-4xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-dark">
-              AGNIESZKA WAWRO
-            </h1>
-            <h2 className="text-2xl md:text-3xl text-primary-dark mb-6 font-semibold">
+            {/* Animated title */}
+            <div className="mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-dark animate-fade-in-up">
+                AGNIESZKA WAWRO
+              </h1>
+              <div className="h-1 w-32 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full animate-scale-in"></div>
+            </div>
+            
+            <h2 className="text-2xl md:text-3xl text-primary-dark mb-8 font-semibold animate-fade-in-up animation-delay-200">
               Inżynier Architekt
             </h2>
             
-            <div className="space-y-4 text-lg text-gray-700 max-w-2xl">
-              <p>
+            <div className="space-y-4 text-lg text-gray-700 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
+              <p className="leading-relaxed">
                 Ambitna studentka 2-go semestru Architektury studiów II stopnia na Politechnice Gdańskiej.
               </p>
-              <p>
+              <p className="leading-relaxed">
                 W czerwcu 2025 roku otrzymałam tytuł <span className="font-semibold text-primary-dark">inż. arch.</span> po zakończonych studiach I stopnia.
               </p>
-              <p>
+              <p className="leading-relaxed">
                 Z zaangażowaniem chcę rozwijać swoje umiejętności pracy w zawodzie. Jestem osobą otwartą, nastawioną na zdobywanie wiedzy i osiąganie celów.
               </p>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-10 animate-fade-in-up animation-delay-600">
               <a
                 href="#contact"
-                className="inline-block bg-primary-dark text-white px-8 py-3 rounded-full font-semibold hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary-dark to-primary text-white px-10 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
               >
-                Skontaktuj się
+                <span>Skontaktuj się</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
             </div>
           </div>
