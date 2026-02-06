@@ -73,6 +73,17 @@ const Contact = () => {
       {/* Footer */}
       <footer className="container-custom relative z-10 mt-16 pt-8 border-t border-white/20 text-center text-white/90">
         <p className="font-medium">&copy; {new Date().getFullYear()} Agnieszka Wawro. Wszystkie prawa zastrzeżone.</p>
+        <p className="mt-2 text-sm text-white/70">
+          Developed by{' '}
+          <a 
+            href="https://wawro.ovh" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-white/90 underline transition-colors duration-300"
+          >
+            wawro
+          </a>
+        </p>
       </footer>
     </section>
   );
