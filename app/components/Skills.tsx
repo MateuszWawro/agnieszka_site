@@ -39,9 +39,6 @@ const Skills = () => {
                     <span className="font-semibold text-dark group-hover:text-primary-dark transition-colors duration-300">
                       {skill.name}
                     </span>
-                    <span className="text-sm font-bold text-primary-dark bg-primary-dark/10 px-3 py-1 rounded-full">
-                      {skill.level}%
-                    </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
                     <div

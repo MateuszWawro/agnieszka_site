@@ -485,28 +485,15 @@ const Skills = ()=>{
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex justify-between items-center",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "font-semibold text-dark group-hover:text-primary-dark transition-colors duration-300",
-                                                                children: skill.name
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/components/Skills.tsx",
-                                                                lineNumber: 39,
-                                                                columnNumber: 21
-                                                            }, ("TURBOPACK compile-time value", void 0)),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-sm font-bold text-primary-dark bg-primary-dark/10 px-3 py-1 rounded-full",
-                                                                children: [
-                                                                    skill.level,
-                                                                    "%"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/components/Skills.tsx",
-                                                                lineNumber: 42,
-                                                                columnNumber: 21
-                                                            }, ("TURBOPACK compile-time value", void 0))
-                                                        ]
-                                                    }, void 0, true, {
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "font-semibold text-dark group-hover:text-primary-dark transition-colors duration-300",
+                                                            children: skill.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/components/Skills.tsx",
+                                                            lineNumber: 39,
+                                                            columnNumber: 21
+                                                        }, ("TURBOPACK compile-time value", void 0))
+                                                    }, void 0, false, {
                                                         fileName: "[project]/app/components/Skills.tsx",
                                                         lineNumber: 38,
                                                         columnNumber: 19
@@ -522,17 +509,17 @@ const Skills = ()=>{
                                                                 className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/Skills.tsx",
-                                                                lineNumber: 52,
+                                                                lineNumber: 49,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/components/Skills.tsx",
-                                                            lineNumber: 47,
+                                                            lineNumber: 44,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Skills.tsx",
-                                                        lineNumber: 46,
+                                                        lineNumber: 43,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
@@ -562,14 +549,14 @@ const Skills = ()=>{
                                                 children: "🎨"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Skills.tsx",
-                                                lineNumber: 63,
+                                                lineNumber: 60,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             "Wizualizacje"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/Skills.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 59,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -581,7 +568,7 @@ const Skills = ()=>{
                                                         className: "absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-full"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Skills.tsx",
-                                                        lineNumber: 73,
+                                                        lineNumber: 70,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -589,7 +576,7 @@ const Skills = ()=>{
                                                         children: tool.icon
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Skills.tsx",
-                                                        lineNumber: 75,
+                                                        lineNumber: 72,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -597,24 +584,24 @@ const Skills = ()=>{
                                                         children: tool.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Skills.tsx",
-                                                        lineNumber: 78,
+                                                        lineNumber: 75,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, index, true, {
                                                 fileName: "[project]/app/components/Skills.tsx",
-                                                lineNumber: 68,
+                                                lineNumber: 65,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)))
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Skills.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 63,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Skills.tsx",
-                                lineNumber: 61,
+                                lineNumber: 58,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
