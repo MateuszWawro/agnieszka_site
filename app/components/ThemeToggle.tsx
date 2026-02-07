@@ -43,7 +43,7 @@ const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       className="relative inline-flex items-center h-6 rounded-full w-12 bg-gray-300 dark:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
-      aria-label="Toggle theme"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <span
         className={`${
