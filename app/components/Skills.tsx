@@ -35,11 +35,9 @@ const Skills = () => {
             <div className="grid md:grid-cols-2 gap-6">
               {designSkills.map((skill, index) => (
                 <div key={index} className="space-y-2 group">
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-dark group-hover:text-primary-dark transition-colors duration-300">
-                      {skill.name}
-                    </span>
-                  </div>
+                  <span className="font-semibold text-dark group-hover:text-primary-dark transition-colors duration-300">
+                    {skill.name}
+                  </span>
                   <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
                     <div
                       className="bg-gradient-to-r from-primary-dark via-primary to-primary-dark h-full rounded-full transition-all duration-1000 ease-out hover:shadow-lg relative overflow-hidden"
