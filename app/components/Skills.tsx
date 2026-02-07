@@ -1,4 +1,10 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 const Skills = () => {
+  const t = useTranslations('skills');
+
   const designSkills = [
     { name: 'AutoCAD', level: 90 },
     { name: 'REVIT', level: 85 },
@@ -21,7 +27,7 @@ const Skills = () => {
       
       <div className="container-custom relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark dark:text-white">
-          Umiejętności
+          {t('title')}
         </h2>
         <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-16"></div>
 
@@ -30,7 +36,7 @@ const Skills = () => {
           <div className="mb-16">
             <h3 className="text-2xl font-bold mb-8 text-primary-dark dark:text-primary flex items-center gap-3">
               <span className="text-3xl">💻</span>
-              Programy projektowe
+              {t('designTools')}
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {designSkills.map((skill, index) => (
@@ -56,7 +62,7 @@ const Skills = () => {
           <div>
             <h3 className="text-2xl font-bold mb-8 text-primary-dark dark:text-primary flex items-center gap-3">
               <span className="text-3xl">🎨</span>
-              Wizualizacje
+              {t('visualization')}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {visualizationTools.map((tool, index) => (

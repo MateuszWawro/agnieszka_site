@@ -1,4 +1,10 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 const Experience = () => {
+  const t = useTranslations('experience');
+
   return (
     <section id="experience" className="section-padding bg-gradient-to-b from-gray-light to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
       {/* Decorative background */}
@@ -6,7 +12,7 @@ const Experience = () => {
       
       <div className="container-custom relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark dark:text-white">
-          Doświadczenie
+          {t('title')}
         </h2>
         <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-16"></div>
 
@@ -23,15 +29,14 @@ const Experience = () => {
                 <div className="flex-1">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                     <h3 className="text-2xl font-bold text-dark dark:text-white group-hover:text-primary-dark dark:group-hover:text-primary transition-colors duration-300">
-                      MIDI Pracownia Architektoniczna
+                      {t('midi.company')}
                     </h3>
                     <span className="inline-block bg-primary-dark/10 dark:bg-primary/20 text-primary-dark dark:text-primary font-semibold px-4 py-1 rounded-full mt-2 md:mt-0">
-                      kwiecień - czerwiec 2024
+                      {t('midi.period')}
                     </span>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Praktyki studenckie obejmujące wykonywanie projektu architektoniczno-budowlanego, 
-                    projektów urządzenia terenu oraz rozwój w obsłudze programów AutoCAD i SketchUp.
+                    {t('midi.description')}
                   </p>
                 </div>
               </div>

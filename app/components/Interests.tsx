@@ -1,19 +1,25 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 const Interests = () => {
+  const t = useTranslations('interests');
+  
   const interests = [
     {
-      title: 'Projektowanie wnętrz',
+      title: t('interior.title'),
       icon: '🏠',
-      description: 'Najbardziej w architekturze podoba mi się projektowanie wnętrz. Nie mam dużego doświadczenia, jednak bardzo chciałabym rozwijać się w tym kierunku.',
+      description: t('interior.description'),
     },
     {
-      title: 'Projektowanie urbanistyczne',
+      title: t('urban.title'),
       icon: '🏙️',
-      description: 'W większej skali, projektowanie urbanistyczne jest mi bliskie. Lubię analizować szersze aspekty wpływające na projekt oraz rozwiązywać problemy z tym wiązane tworząc większą koncepcję projektową, niż tylko sam budynek.',
+      description: t('urban.description'),
     },
     {
-      title: 'Sport i aktywność',
+      title: t('sport.title'),
       icon: '⚽',
-      description: 'Poza architekturą bliski mojemu sercu jest sport, który towarzyszy mi od najmłodszych lat. Aktywne spędzanie czasu wolnego resetuje głowę, a trenowanie od lat szkolnych nauczyło mnie bardzo dobrze i efektywnie zarządzać czasem.',
+      description: t('sport.description'),
     },
   ];
 
@@ -25,7 +31,7 @@ const Interests = () => {
       
       <div className="container-custom relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark dark:text-white">
-          Zainteresowania
+          {t('title')}
         </h2>
         <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-16"></div>
 

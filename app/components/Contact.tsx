@@ -1,21 +1,27 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 const Contact = () => {
+  const t = useTranslations('contact');
+  
   const contactInfo = [
     {
       icon: '📱',
-      label: 'Telefon',
+      label: t('phone'),
       value: '+48 724 23 22 21',
       href: 'tel:+48724232221',
     },
     {
       icon: '✉️',
-      label: 'Email',
+      label: t('email'),
       value: 'agnieszka.wawro02@gmail.com',
       href: 'mailto:agnieszka.wawro02@gmail.com',
     },
     {
       icon: '📍',
-      label: 'Lokalizacja',
-      value: 'Elbląg / Gdańsk',
+      label: t('location'),
+      value: t('locationValue'),
       href: '#',
     },
   ];
@@ -28,7 +34,7 @@ const Contact = () => {
       
       <div className="container-custom relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">
-          Kontakt
+          {t('title')}
         </h2>
         <div className="h-1 w-24 bg-white/80 mx-auto rounded-full mb-16"></div>
 
@@ -64,7 +70,7 @@ const Contact = () => {
         <div className="text-center mt-16">
           <div className="inline-block bg-white/10 dark:bg-gray-700/50 backdrop-blur-sm rounded-2xl px-8 py-6">
             <p className="text-white dark:text-gray-200 text-lg font-medium">
-              Zapraszam do kontaktu w sprawie współpracy lub projektów architektonicznych
+              {t('inviteMessage')}
             </p>
           </div>
         </div>
@@ -72,9 +78,9 @@ const Contact = () => {
 
       {/* Footer */}
       <footer className="container-custom relative z-10 mt-16 pt-8 border-t border-white/20 text-center text-white/90 dark:text-gray-300">
-        <p className="font-medium">&copy; {new Date().getFullYear()} Agnieszka Wawro. Wszystkie prawa zastrzeżone.</p>
+        <p className="font-medium">&copy; {new Date().getFullYear()} Agnieszka Wawro. {t('footer.rights')}</p>
         <p className="mt-2 text-sm text-white/70 dark:text-gray-400">
-          Developed by{' '}
+          {t('footer.developedBy')}{' '}
           <a 
             href="https://wawro.ovh" 
             target="_blank" 

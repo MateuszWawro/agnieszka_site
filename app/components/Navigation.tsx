@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const t = useTranslations('nav');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,12 +19,12 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'O mnie', href: '#about' },
-    { name: 'Wykształcenie', href: '#education' },
-    { name: 'Doświadczenie', href: '#experience' },
-    { name: 'Umiejętności', href: '#skills' },
-    { name: 'Zainteresowania', href: '#interests' },
-    { name: 'Kontakt', href: '#contact' },
+    { name: t('about'), href: '#about' },
+    { name: t('education'), href: '#education' },
+    { name: t('experience'), href: '#experience' },
+    { name: t('skills'), href: '#skills' },
+    { name: t('interests'), href: '#interests' },
+    { name: t('contact'), href: '#contact' },
   ];
 
   return (
@@ -32,10 +35,13 @@ const Navigation = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between py-4">
-          <a href="#" className="text-2xl font-bold text-primary-dark dark:text-primary">
-            AW
-          </a>
+          {/* Left side: Language Switcher and Theme Toggle */}
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
           
+          {/* Center/Right: Navigation items */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
@@ -46,7 +52,6 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
@@ -93,9 +98,6 @@ const Navigation = () => {
               {item.name}
             </a>
           ))}
-          <div className="py-2">
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </nav>
