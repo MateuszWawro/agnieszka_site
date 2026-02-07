@@ -10,7 +10,15 @@ interface Shape {
   type: 'circle' | 'square' | 'triangle';
   velocity: { x: number; y: number };
   color: string;
+  rgbaColor: string;
 }
+
+const SHAPE_COLORS = [
+  { class: 'bg-primary-dark/40', rgba: 'rgba(232, 155, 163, 0.4)' },
+  { class: 'bg-primary/60', rgba: 'rgba(245, 194, 199, 0.6)' },
+  { class: 'bg-primary-dark/30', rgba: 'rgba(232, 155, 163, 0.3)' },
+  { class: 'bg-primary/50', rgba: 'rgba(245, 194, 199, 0.5)' },
+];
 
 const InteractiveShapes = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,9 +31,9 @@ const InteractiveShapes = () => {
     const createShapes = () => {
       const newShapes: Shape[] = [];
       const shapeTypes: ('circle' | 'square' | 'triangle')[] = ['circle', 'square', 'triangle'];
-      const colors = ['bg-primary-dark/40', 'bg-primary/60', 'bg-primary-dark/30', 'bg-primary/50'];
 
       for (let i = 0; i < 12; i++) {
+        const colorConfig = SHAPE_COLORS[Math.floor(Math.random() * SHAPE_COLORS.length)];
         newShapes.push({
           id: i,
           x: Math.random() * 100,
@@ -33,7 +41,8 @@ const InteractiveShapes = () => {
           size: Math.random() * 30 + 20,
           type: shapeTypes[Math.floor(Math.random() * shapeTypes.length)],
           velocity: { x: 0, y: 0 },
-          color: colors[Math.floor(Math.random() * colors.length)],
+          color: colorConfig.class,
+          rgbaColor: colorConfig.rgba,
         });
       }
       setShapes(newShapes);
@@ -150,14 +159,6 @@ const InteractiveShapes = () => {
       );
     } else {
       // Triangle - using border trick to create triangle shape
-      const triangleColor = shape.color.includes('primary-dark') 
-        ? 'rgba(232, 155, 163, 0.4)'  // primary-dark/40
-        : shape.color.includes('primary/60')
-        ? 'rgba(245, 194, 199, 0.6)'   // primary/60
-        : shape.color.includes('primary-dark/30')
-        ? 'rgba(232, 155, 163, 0.3)'  // primary-dark/30
-        : 'rgba(245, 194, 199, 0.5)';  // primary/50
-
       return (
         <div
           key={shape.id}
@@ -169,7 +170,7 @@ const InteractiveShapes = () => {
             height: 0,
             borderLeft: `${shape.size / 2}px solid transparent`,
             borderRight: `${shape.size / 2}px solid transparent`,
-            borderBottom: `${shape.size}px solid ${triangleColor}`,
+            borderBottom: `${shape.size}px solid ${shape.rgbaColor}`,
           }}
         />
       );
