@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,30 +27,31 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white dark:bg-gray-900 shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between py-4">
-          <a href="#" className="text-2xl font-bold text-primary-dark">
+          <a href="#" className="text-2xl font-bold text-primary-dark dark:text-primary">
             AW
           </a>
           
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-dark hover:text-primary-dark transition-colors duration-200"
+                className="text-dark dark:text-gray-200 hover:text-primary-dark dark:hover:text-primary transition-colors duration-200"
               >
                 {item.name}
               </a>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-dark"
+            className="md:hidden text-dark dark:text-white"
             onClick={() => {
               const menu = document.getElementById('mobile-menu');
               if (menu) {
@@ -80,7 +82,7 @@ const Navigation = () => {
             <a
               key={item.name}
               href={item.href}
-              className="block py-2 text-dark hover:text-primary-dark transition-colors duration-200"
+              className="block py-2 text-dark dark:text-gray-200 hover:text-primary-dark dark:hover:text-primary transition-colors duration-200"
               onClick={() => {
                 const menu = document.getElementById('mobile-menu');
                 if (menu) {
@@ -91,6 +93,9 @@ const Navigation = () => {
               {item.name}
             </a>
           ))}
+          <div className="py-2">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </nav>

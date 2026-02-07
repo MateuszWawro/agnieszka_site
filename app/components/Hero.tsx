@@ -1,18 +1,18 @@
 'use client';
 
+import InteractiveShapes from './InteractiveShapes';
+
 const Hero = () => {
   return (
-    <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-light to-primary/10">
+    <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-light to-primary/10 dark:from-gray-900 dark:via-gray-800 dark:to-primary-dark/10">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated gradient orbs */}
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-dark/10 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-dark/10 dark:bg-primary-dark/5 rounded-full blur-3xl animate-float-delayed"></div>
         
-        {/* Geometric shapes */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary-dark/40 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-primary/60 rounded-full animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-primary-dark/40 rounded-full animate-pulse"></div>
+        {/* Interactive Shapes - replaces static dots */}
+        <InteractiveShapes />
       </div>
 
       <div className="container-custom section-padding relative z-10">
@@ -21,22 +21,22 @@ const Hero = () => {
           <div className="text-center max-w-4xl">
             {/* Animated title */}
             <div className="mb-6">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-dark animate-fade-in-up">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-dark dark:text-white animate-fade-in-up">
                 AGNIESZKA WAWRO
               </h1>
               <div className="h-1 w-32 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full animate-scale-in"></div>
             </div>
             
-            <h2 className="text-2xl md:text-3xl text-primary-dark mb-8 font-semibold animate-fade-in-up animation-delay-200">
+            <h2 className="text-2xl md:text-3xl text-primary-dark dark:text-primary mb-8 font-semibold animate-fade-in-up animation-delay-200">
               Inżynier Architekt
             </h2>
             
-            <div className="space-y-4 text-lg text-gray-700 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
+            <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
               <p className="leading-relaxed">
                 Ambitna studentka 2-go semestru Architektury studiów II stopnia na Politechnice Gdańskiej.
               </p>
               <p className="leading-relaxed">
-                W czerwcu 2025 roku otrzymałam tytuł <span className="font-semibold text-primary-dark">inż. arch.</span> po zakończonych studiach I stopnia.
+                W czerwcu 2025 roku otrzymałam tytuł <span className="font-semibold text-primary-dark dark:text-primary">inż. arch.</span> po zakończonych studiach I stopnia.
               </p>
               <p className="leading-relaxed">
                 Z zaangażowaniem chcę rozwijać swoje umiejętności pracy w zawodzie. Jestem osobą otwartą, nastawioną na zdobywanie wiedzy i osiąganie celów.

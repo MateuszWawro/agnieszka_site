@@ -15,12 +15,12 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="section-padding bg-gradient-to-b from-white to-gray-light relative overflow-hidden">
+    <section id="skills" className="section-padding bg-gradient-to-b from-white to-gray-light dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute bottom-10 left-0 w-72 h-72 bg-primary-dark/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 left-0 w-72 h-72 bg-primary-dark/5 dark:bg-primary-dark/10 rounded-full blur-3xl"></div>
       
       <div className="container-custom relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark dark:text-white">
           Umiejętności
         </h2>
         <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-16"></div>
@@ -28,17 +28,17 @@ const Skills = () => {
         <div className="max-w-5xl mx-auto">
           {/* Design Skills with Progress Bars */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-primary-dark flex items-center gap-3">
+            <h3 className="text-2xl font-bold mb-8 text-primary-dark dark:text-primary flex items-center gap-3">
               <span className="text-3xl">💻</span>
               Programy projektowe
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {designSkills.map((skill, index) => (
                 <div key={index} className="space-y-2 group">
-                  <span className="font-semibold text-dark group-hover:text-primary-dark transition-colors duration-300">
+                  <span className="font-semibold text-dark dark:text-white group-hover:text-primary-dark dark:group-hover:text-primary transition-colors duration-300">
                     {skill.name}
                   </span>
-                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden shadow-inner">
                     <div
                       className="bg-gradient-to-r from-primary-dark via-primary to-primary-dark h-full rounded-full transition-all duration-1000 ease-out hover:shadow-lg relative overflow-hidden"
                       style={{ width: `${skill.level}%` }}
@@ -54,7 +54,7 @@ const Skills = () => {
 
           {/* Visualization Tools */}
           <div>
-            <h3 className="text-2xl font-bold mb-8 text-primary-dark flex items-center gap-3">
+            <h3 className="text-2xl font-bold mb-8 text-primary-dark dark:text-primary flex items-center gap-3">
               <span className="text-3xl">🎨</span>
               Wizualizacje
             </h3>
