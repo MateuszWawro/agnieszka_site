@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "about": "About",
+    "education": "Education",
+    "experience": "Experience",
+    "skills": "Skills",
+    "interests": "Interests",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "AGNIESZKA WAWRO",
+    "subtitle": "Architect Engineer",
+    "description1": "Ambitious 2nd semester student of Master's Degree in Architecture at Gdańsk University of Technology.",
+    "description2": "In June 2025, I received the title of",
+    "description2_highlight": "Eng. Arch.",
+    "description2_end": "after completing my Bachelor's degree.",
+    "description3": "I am committed to developing my professional skills. I am an open person, focused on acquiring knowledge and achieving goals.",
+    "contactButton": "Get in Touch"
+  },
+  "education": {
+    "title": "Education",
+    "bachelor": {
+      "period": "2021 - 2025",
+      "institution": "Gdańsk University of Technology",
+      "degree": "Bachelor of Architecture",
+      "field": "Architecture, Bachelor's Degree"
+    },
+    "master": {
+      "period": "2025 - present",
+      "institution": "Gdańsk University of Technology",
+      "degree": "Master of Architecture",
+      "field": "Architecture, Master's Degree"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "midi": {
+      "company": "MIDI Architectural Studio",
+      "period": "April - June 2024",
+      "description": "Student internship involving architectural and construction design, site development projects, and development of AutoCAD and SketchUp skills."
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "designTools": "Design Software",
+    "visualization": "Visualization"
+  },
+  "interests": {
+    "title": "Interests",
+    "interior": {
+      "title": "Interior Design",
+      "description": "What I love most about architecture is interior design. I don't have much experience yet, but I would really like to develop in this direction."
+    },
+    "urban": {
+      "title": "Urban Design",
+      "description": "On a larger scale, urban design is close to my heart. I enjoy analyzing broader aspects that influence a project and solving related problems by creating a larger design concept, not just the building itself."
+    },
+    "sport": {
+      "title": "Sports and Activity",
+      "description": "Besides architecture, sports are close to my heart, and they have been with me since childhood. Active leisure time clears my mind, and training since school years taught me to manage time very well and efficiently."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "locationValue": "Elbląg / Gdańsk",
+    "inviteMessage": "Feel free to contact me regarding collaboration or architectural projects",
+    "footer": {
+      "rights": "All rights reserved.",
+      "developedBy": "Developed by"
+    }
+  }
+}

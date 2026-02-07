@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "about": "O mnie",
+    "education": "Wykształcenie",
+    "experience": "Doświadczenie",
+    "skills": "Umiejętności",
+    "interests": "Zainteresowania",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "AGNIESZKA WAWRO",
+    "subtitle": "Inżynier Architekt",
+    "description1": "Ambitna studentka 2-go semestru Architektury studiów II stopnia na Politechnice Gdańskiej.",
+    "description2": "W czerwcu 2025 roku otrzymałam tytuł",
+    "description2_highlight": "inż. arch.",
+    "description2_end": "po zakończonych studiach I stopnia.",
+    "description3": "Z zaangażowaniem chcę rozwijać swoje umiejętności pracy w zawodzie. Jestem osobą otwartą, nastawioną na zdobywanie wiedzy i osiąganie celów.",
+    "contactButton": "Skontaktuj się"
+  },
+  "education": {
+    "title": "Wykształcenie",
+    "bachelor": {
+      "period": "2021 - 2025",
+      "institution": "Politechnika Gdańska",
+      "degree": "inżynier architekt",
+      "field": "Architektura, studia I stopnia"
+    },
+    "master": {
+      "period": "2025 - obecnie",
+      "institution": "Politechnika Gdańska",
+      "degree": "magister inżynier architekt",
+      "field": "Architektura, studia II stopnia"
+    }
+  },
+  "experience": {
+    "title": "Doświadczenie",
+    "midi": {
+      "company": "MIDI Pracownia Architektoniczna",
+      "period": "kwiecień - czerwiec 2024",
+      "description": "Praktyki studenckie obejmujące wykonywanie projektu architektoniczno-budowlanego, projektów urządzenia terenu oraz rozwój w obsłudze programów AutoCAD i SketchUp."
+    }
+  },
+  "skills": {
+    "title": "Umiejętności",
+    "designTools": "Programy projektowe",
+    "visualization": "Wizualizacje"
+  },
+  "interests": {
+    "title": "Zainteresowania",
+    "interior": {
+      "title": "Projektowanie wnętrz",
+      "description": "Najbardziej w architekturze podoba mi się projektowanie wnętrz. Nie mam dużego doświadczenia, jednak bardzo chciałabym rozwijać się w tym kierunku."
+    },
+    "urban": {
+      "title": "Projektowanie urbanistyczne",
+      "description": "W większej skali, projektowanie urbanistyczne jest mi bliskie. Lubię analizować szersze aspekty wpływające na projekt oraz rozwiązywać problemy z tym wiązane tworząc większą koncepcję projektową, niż tylko sam budynek."
+    },
+    "sport": {
+      "title": "Sport i aktywność",
+      "description": "Poza architekturą bliski mojemu sercu jest sport, który towarzyszy mi od najmłodszych lat. Aktywne spędzanie czasu wolnego resetuje głowę, a trenowanie od lat szkolnych nauczyło mnie bardzo dobrze i efektywnie zarządzać czasem."
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "phone": "Telefon",
+    "email": "Email",
+    "location": "Lokalizacja",
+    "locationValue": "Elbląg / Gdańsk",
+    "inviteMessage": "Zapraszam do kontaktu w sprawie współpracy lub projektów architektonicznych",
+    "footer": {
+      "rights": "Wszystkie prawa zastrzeżone.",
+      "developedBy": "Developed by"
+    }
+  }
+}

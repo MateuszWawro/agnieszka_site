@@ -1,17 +1,23 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 const Education = () => {
+  const t = useTranslations('education');
+  
   const education = [
     {
-      period: '2021 - 2025',
-      institution: 'Politechnika Gdańska',
-      degree: 'inżynier architekt',
-      field: 'Architektura, studia I stopnia',
+      period: t('bachelor.period'),
+      institution: t('bachelor.institution'),
+      degree: t('bachelor.degree'),
+      field: t('bachelor.field'),
       icon: '🎓',
     },
     {
-      period: '2025 - obecnie',
-      institution: 'Politechnika Gdańska',
-      degree: 'magister inżynier architekt',
-      field: 'Architektura, studia II stopnia',
+      period: t('master.period'),
+      institution: t('master.institution'),
+      degree: t('master.degree'),
+      field: t('master.field'),
       icon: '📚',
     },
   ];
@@ -23,7 +29,7 @@ const Education = () => {
       
       <div className="container-custom relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark dark:text-white">
-          Wykształcenie
+          {t('title')}
         </h2>
         <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-16"></div>
 

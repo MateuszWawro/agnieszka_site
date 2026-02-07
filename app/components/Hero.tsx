@@ -1,8 +1,11 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import InteractiveShapes from './InteractiveShapes';
 
 const Hero = () => {
+  const t = useTranslations('hero');
+
   return (
     <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-light to-primary/10 dark:from-gray-900 dark:via-gray-800 dark:to-primary-dark/10">
       {/* Decorative background elements */}
@@ -22,24 +25,24 @@ const Hero = () => {
             {/* Animated title */}
             <div className="mb-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-dark dark:text-white animate-fade-in-up">
-                AGNIESZKA WAWRO
+                {t('title')}
               </h1>
               <div className="h-1 w-32 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full animate-scale-in"></div>
             </div>
             
             <h2 className="text-2xl md:text-3xl text-primary-dark dark:text-primary mb-8 font-semibold animate-fade-in-up animation-delay-200">
-              Inżynier Architekt
+              {t('subtitle')}
             </h2>
             
             <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
               <p className="leading-relaxed">
-                Ambitna studentka 2-go semestru Architektury studiów II stopnia na Politechnice Gdańskiej.
+                {t('description1')}
               </p>
               <p className="leading-relaxed">
-                W czerwcu 2025 roku otrzymałam tytuł <span className="font-semibold text-primary-dark dark:text-primary">inż. arch.</span> po zakończonych studiach I stopnia.
+                {t('description2')} <span className="font-semibold text-primary-dark dark:text-primary">{t('description2_highlight')}</span> {t('description2_end')}
               </p>
               <p className="leading-relaxed">
-                Z zaangażowaniem chcę rozwijać swoje umiejętności pracy w zawodzie. Jestem osobą otwartą, nastawioną na zdobywanie wiedzy i osiąganie celów.
+                {t('description3')}
               </p>
             </div>
 
@@ -48,7 +51,7 @@ const Hero = () => {
                 href="#contact"
                 className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary-dark to-primary text-white px-10 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
               >
-                <span>Skontaktuj się</span>
+                <span>{t('contactButton')}</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
