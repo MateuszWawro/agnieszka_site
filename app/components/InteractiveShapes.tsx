@@ -149,7 +149,15 @@ const InteractiveShapes = () => {
         />
       );
     } else {
-      // Triangle
+      // Triangle - using border trick to create triangle shape
+      const triangleColor = shape.color.includes('primary-dark') 
+        ? 'rgba(232, 155, 163, 0.4)'  // primary-dark/40
+        : shape.color.includes('primary/60')
+        ? 'rgba(245, 194, 199, 0.6)'   // primary/60
+        : shape.color.includes('primary-dark/30')
+        ? 'rgba(232, 155, 163, 0.3)'  // primary-dark/30
+        : 'rgba(245, 194, 199, 0.5)';  // primary/50
+
       return (
         <div
           key={shape.id}
@@ -161,15 +169,9 @@ const InteractiveShapes = () => {
             height: 0,
             borderLeft: `${shape.size / 2}px solid transparent`,
             borderRight: `${shape.size / 2}px solid transparent`,
-            borderBottom: `${shape.size}px solid`,
+            borderBottom: `${shape.size}px solid ${triangleColor}`,
           }}
-        >
-          <div className={`w-0 h-0 ${shape.color}`} style={{
-            borderLeft: `${shape.size / 2}px solid transparent`,
-            borderRight: `${shape.size / 2}px solid transparent`,
-            borderBottom: `${shape.size}px solid currentColor`,
-          }} />
-        </div>
+        />
       );
     }
   };
