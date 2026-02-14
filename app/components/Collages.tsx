@@ -24,16 +24,16 @@ const Collages = () => {
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-primary-dark/5 dark:bg-primary-dark/10 rounded-full blur-3xl"></div>
       
       <div className="container-custom relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-dark dark:text-white">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-3 md:mb-4 text-dark dark:text-white">
           {t('title')}
         </h2>
-        <div className="h-1 w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-8"></div>
+        <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-6 md:mb-8"></div>
         
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-16 text-lg leading-relaxed">
+        <p className="text-center text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-12 md:mb-16 leading-relaxed px-4">
           {t('description')}
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {collageImages.map((image, index) => (
             <div
               key={index}
@@ -45,7 +45,8 @@ const Collages = () => {
                   alt={image.alt}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  priority={index === 0}
                 />
               </div>
             </div>

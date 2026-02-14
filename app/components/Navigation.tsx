@@ -35,15 +35,15 @@ const Navigation = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-3 md:py-4">
           {/* Left side: Language Switcher and Theme Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
           
           {/* Center/Right: Navigation items */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -57,7 +57,7 @@ const Navigation = () => {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-dark dark:text-white"
+            className="lg:hidden text-dark dark:text-white p-2"
             onClick={() => {
               const menu = document.getElementById('mobile-menu');
               if (menu) {
@@ -83,12 +83,12 @@ const Navigation = () => {
         </div>
 
         {/* Mobile menu */}
-        <div id="mobile-menu" className="hidden md:hidden pb-4">
+        <div id="mobile-menu" className="hidden lg:hidden pb-4">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="block py-2 text-dark dark:text-gray-200 hover:text-primary-dark dark:hover:text-primary transition-colors duration-200"
+              className="block py-3 text-dark dark:text-gray-200 hover:text-primary-dark dark:hover:text-primary transition-colors duration-200"
               onClick={() => {
                 const menu = document.getElementById('mobile-menu');
                 if (menu) {

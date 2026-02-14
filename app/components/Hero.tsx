@@ -21,20 +21,20 @@ const Hero = () => {
       <div className="container-custom section-padding relative z-10">
         <div className="flex justify-center items-center">
           {/* Content */}
-          <div className="text-center max-w-4xl">
+          <div className="text-center max-w-4xl px-4">
             {/* Animated title */}
-            <div className="mb-6">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-dark dark:text-white animate-fade-in-up">
+            <div className="mb-4 md:mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 text-dark dark:text-white animate-fade-in-up leading-tight">
                 {t('title')}
               </h1>
-              <div className="h-1 w-32 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full animate-scale-in"></div>
+              <div className="h-1 w-20 sm:w-24 md:w-32 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full animate-scale-in"></div>
             </div>
             
-            <h2 className="text-2xl md:text-3xl text-primary-dark dark:text-primary mb-8 font-semibold animate-fade-in-up animation-delay-200">
+            <h2 className="text-xl sm:text-2xl md:text-3xl text-primary-dark dark:text-primary mb-6 md:mb-8 font-semibold animate-fade-in-up animation-delay-200">
               {t('subtitle')}
             </h2>
             
-            <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
+            <div className="space-y-3 md:space-y-4 text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
               <p className="leading-relaxed">
                 {t('description1')}
               </p>
@@ -46,10 +46,10 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="mt-10 animate-fade-in-up animation-delay-600">
+            <div className="mt-8 md:mt-10 animate-fade-in-up animation-delay-600">
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary-dark to-primary text-white px-10 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary-dark to-primary text-white px-6 py-3 sm:px-8 sm:py-3.5 md:px-10 md:py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-sm sm:text-base"
               >
                 <span>{t('contactButton')}</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
