@@ -39,7 +39,7 @@ const Collages = () => {
               key={index}
               className="group relative bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <div className="relative w-full overflow-hidden" style={{ paddingBottom: '75%' }}>
                 <Image
                   src={image.src}
                   alt={image.alt}
