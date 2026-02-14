@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import type { Metadata } from 'next';
 import '../globals.css';
+import CookieConsent from '../components/CookieConsent';
 
 const SITE_URL = 'https://agnieszka.wawro.ovh';
 
@@ -99,6 +100,7 @@ export default async function LocaleLayout({
       <body className="font-sans antialiased bg-white dark:bg-gray-900">
         <NextIntlClientProvider messages={messages}>
           {children}
+          <CookieConsent />
         </NextIntlClientProvider>
       </body>
     </html>

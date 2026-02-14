@@ -79,5 +79,11 @@
       "rights": "Wszystkie prawa zastrzeżone.",
       "developedBy": "Developed by"
     }
+  },
+  "cookies": {
+    "title": "Ta strona używa plików cookie",
+    "description": "Używamy plików cookie, aby zapewnić prawidłowe działanie strony i analizować ruch. Klikając \"Akceptuj wszystkie\", wyrażasz zgodę na ich użycie.",
+    "acceptAll": "Akceptuj wszystkie",
+    "essentialOnly": "Tylko niezbędne"
   }
 }
