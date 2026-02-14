@@ -78,7 +78,9 @@ export async function generateMetadata({
         'max-snippet': -1,
       },
     },
-    verification: {},
+    verification: {
+      google: 'wQqVVMHVrAJNtEaNoLw3FL_O0Wlv4YanIegK16eglQ4',
+    },
   };
 }
 
