@@ -15,8 +15,8 @@ const Contact = () => {
     {
       icon: '✉️',
       label: t('email'),
-      value: 'agnieszka.wawro02@gmail.com',
-      href: 'mailto:agnieszka.wawro02@gmail.com',
+      value: 'agnieszkawawro02@gmail.com',
+      href: 'mailto:agnieszkawawro02@gmail.com',
     },
     {
       icon: '📍',
