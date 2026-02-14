@@ -1,12 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 const Skills = () => {
   const t = useTranslations('skills');
   const [activeGallery, setActiveGallery] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const designSkills = [
     { name: 'AutoCAD', level: 90 },
@@ -35,6 +36,31 @@ const Skills = () => {
       { src: '/agnieszka_kol2.jpg', alt: t('collageAlt2') },
     ],
   };
+
+  const lightboxImages = activeGallery ? (galleries[activeGallery] || []) : [];
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const prevImage = useCallback(() => {
+    setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : prev);
+  }, []);
+  const nextImage = useCallback(() => {
+    setLightboxIndex(prev => prev !== null && prev < lightboxImages.length - 1 ? prev + 1 : prev);
+  }, [lightboxImages.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKey);
+    };
+  }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
 
   return (
     <section id="skills" className="section-padding bg-gradient-to-b from-white to-gray-light dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
@@ -125,7 +151,8 @@ const Skills = () => {
                       {(galleries[activeGallery] || []).map((image, idx) => (
                         <div
                           key={idx}
-                          className="group relative bg-gray-100 dark:bg-gray-600 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                          onClick={() => setLightboxIndex(idx)}
+                          className="group relative bg-gray-100 dark:bg-gray-600 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
                         >
                           <div className="relative w-full" style={{ paddingBottom: '75%' }}>
                             <Image
@@ -135,6 +162,12 @@ const Skills = () => {
                               className="object-cover group-hover:scale-110 transition-transform duration-500"
                               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             />
+                            {/* Zoom icon overlay */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                              <svg className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -156,6 +189,72 @@ const Skills = () => {
           </div>
         </div>
       </div>
+      {/* Lightbox Modal */}
+      {lightboxIndex !== null && lightboxImages[lightboxIndex] && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          {/* Close button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 z-10 text-white/80 hover:text-white transition-colors p-2"
+            aria-label="Zamknij"
+          >
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Previous arrow */}
+          {lightboxIndex > 0 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/30 hover:bg-black/50 rounded-full"
+              aria-label="Poprzedni"
+            >
+              <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Next arrow */}
+          {lightboxIndex < lightboxImages.length - 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/30 hover:bg-black/50 rounded-full"
+              aria-label="Następny"
+            >
+              <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Image */}
+          <div
+            className="relative w-[90vw] h-[80vh] max-w-6xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={lightboxImages[lightboxIndex].src}
+              alt={lightboxImages[lightboxIndex].alt}
+              fill
+              className="object-contain"
+              sizes="90vw"
+              priority
+            />
+          </div>
+
+          {/* Counter */}
+          {lightboxImages.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium bg-black/40 px-4 py-1.5 rounded-full">
+              {lightboxIndex + 1} / {lightboxImages.length}
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 };
