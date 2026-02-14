@@ -4,6 +4,7 @@ import Education from '../components/Education';
 import Experience from '../components/Experience';
 import Skills from '../components/Skills';
 import Interests from '../components/Interests';
+import Collages from '../components/Collages';
 import Contact from '../components/Contact';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Experience />
       <Skills />
       <Interests />
+      <Collages />
       <Contact />
     </main>
   );
