@@ -5,7 +5,6 @@
     "experience": "Experience",
     "skills": "Skills",
     "interests": "Interests",
-    "collages": "Drawing Collages",
     "contact": "Contact"
   },
   "hero": {
@@ -45,6 +44,10 @@
     "title": "Skills",
     "designTools": "Design Software",
     "visualization": "Visualization",
+    "visualizationAndArt": "Visualization & Artistic Works",
+    "collages": "Drawing Collages",
+    "collageAlt1": "Drawing collage - first work",
+    "collageAlt2": "Drawing collage - second work",
     "clickToView": "Click to view gallery",
     "gallery": "Gallery",
     "underConstruction": "Gallery under construction",
@@ -64,12 +67,6 @@
       "title": "Sports and Activity",
       "description": "Besides architecture, sports are close to my heart, and they have been with me since childhood. Active leisure time clears my mind, and training since school years taught me to manage time very well and efficiently."
     }
-  },
-  "collages": {
-    "title": "Drawing Collages",
-    "description": "Presentation of my artistic works featuring drawing collages - a combination of different techniques and perspectives in harmonious compositions.",
-    "image1Alt": "Drawing collage - first work",
-    "image2Alt": "Drawing collage - second work"
   },
   "contact": {
     "title": "Contact",

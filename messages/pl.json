@@ -5,7 +5,6 @@
     "experience": "Doświadczenie",
     "skills": "Umiejętności",
     "interests": "Zainteresowania",
-    "collages": "Kolaże rysunkowe",
     "contact": "Kontakt"
   },
   "hero": {
@@ -45,6 +44,10 @@
     "title": "Umiejętności",
     "designTools": "Programy projektowe",
     "visualization": "Wizualizacje",
+    "visualizationAndArt": "Wizualizacje i prace artystyczne",
+    "collages": "Kolaże rysunkowe",
+    "collageAlt1": "Kolaż rysunkowy - praca pierwsza",
+    "collageAlt2": "Kolaż rysunkowy - praca druga",
     "clickToView": "Kliknij aby zobaczyć galerię",
     "gallery": "Galeria",
     "underConstruction": "Galeria w budowie",
@@ -64,12 +67,6 @@
       "title": "Sport i aktywność",
       "description": "Poza architekturą bliski mojemu sercu jest sport, który towarzyszy mi od najmłodszych lat. Aktywne spędzanie czasu wolnego resetuje głowę, a trenowanie od lat szkolnych nauczyło mnie bardzo dobrze i efektywnie zarządzać czasem."
     }
-  },
-  "collages": {
-    "title": "Kolaże rysunkowe",
-    "description": "Prezentacja moich prac artystycznych przedstawiających kolaże rysunkowe - połączenie różnych technik i perspektyw w harmonijnych kompozycjach.",
-    "image1Alt": "Kolaż rysunkowy - praca pierwsza",
-    "image2Alt": "Kolaż rysunkowy - praca druga"
   },
   "contact": {
     "title": "Kontakt",

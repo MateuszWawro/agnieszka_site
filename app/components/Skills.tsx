@@ -21,14 +21,19 @@ const Skills = () => {
     { name: 'Lumion', icon: '🌅', id: 'lumion' },
     { name: 'D5 Render', icon: '✨', id: 'd5render' },
     { name: 'Twinmotion', icon: '🎬', id: 'twinmotion' },
+    { name: t('collages'), icon: '🎨', id: 'collages' },
   ];
 
-  const galleries = {
+  const galleries: Record<string, { src: string; alt: string }[]> = {
     lumion: [
       { src: '/lumion1.jpg', alt: 'Wizualizacja Lumion 1' },
     ],
     d5render: [],
     twinmotion: [],
+    collages: [
+      { src: '/agnieszka_kol1.jpg', alt: t('collageAlt1') },
+      { src: '/agnieszka_kol2.jpg', alt: t('collageAlt2') },
+    ],
   };
 
   return (
@@ -73,13 +78,13 @@ const Skills = () => {
           <div>
             <h3 className="text-xl sm:text-2xl font-bold mb-3 md:mb-4 text-primary-dark dark:text-primary flex items-center gap-2 sm:gap-3">
               <span className="text-2xl sm:text-3xl">🎨</span>
-              {t('visualization')}
+              {t('visualizationAndArt')}
             </h3>
             <p className="text-center text-sm md:text-base text-gray-600 dark:text-gray-400 mb-6 md:mb-8 flex items-center justify-center gap-2">
               <span className="text-lg">👇</span>
               {t('clickToView')}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
               {visualizationTools.map((tool, index) => (
                 <button
                   key={index}
@@ -115,9 +120,9 @@ const Skills = () => {
                     {visualizationTools.find(t => t.id === activeGallery)?.name} - {t('gallery')}
                   </h4>
 
-                  {galleries[activeGallery as keyof typeof galleries].length > 0 ? (
+                  {(galleries[activeGallery] || []).length > 0 ? (
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                      {galleries[activeGallery as keyof typeof galleries].map((image, idx) => (
+                      {(galleries[activeGallery] || []).map((image, idx) => (
                         <div
                           key={idx}
                           className="group relative bg-gray-100 dark:bg-gray-600 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
