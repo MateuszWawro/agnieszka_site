@@ -22,6 +22,9 @@ const config: Config = {
           light: '#F7F7F7',
         },
       },
+      animation: {
+        'spin-slow': 'spin 12s linear infinite',
+      },
     },
   },
   plugins: [],

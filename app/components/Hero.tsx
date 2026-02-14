@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import InteractiveShapes from './InteractiveShapes';
+import Image from 'next/image';
 
 const Hero = () => {
   const t = useTranslations('hero');
@@ -22,6 +23,31 @@ const Hero = () => {
         <div className="flex justify-center items-center">
           {/* Content */}
           <div className="text-center max-w-4xl px-4">
+            {/* Profile photo */}
+            <div className="mb-6 md:mb-8 animate-fade-in-up flex justify-center">
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+                {/* Decorative ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-dark to-primary p-1 animate-spin-slow">
+                  <div className="w-full h-full rounded-full bg-white dark:bg-gray-900"></div>
+                </div>
+                {/* Photo */}
+                <div className="absolute inset-2 rounded-full overflow-hidden shadow-2xl">
+                  <Image
+                    src="/aga_main.jpg"
+                    alt="Agnieszka Wawro"
+                    fill
+                    quality={100}
+                    unoptimized
+                    className="object-cover object-[center_35%] scale-125"
+                    sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 256px"
+                    priority
+                  />
+                </div>
+                {/* Subtle glow */}
+                <div className="absolute -inset-3 rounded-full bg-primary/20 dark:bg-primary/10 blur-xl -z-10"></div>
+              </div>
+            </div>
+
             {/* Animated title */}
             <div className="mb-4 md:mb-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 text-dark dark:text-white animate-fade-in-up leading-tight">
