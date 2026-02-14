@@ -44,7 +44,11 @@
   "skills": {
     "title": "Umiejętności",
     "designTools": "Programy projektowe",
-    "visualization": "Wizualizacje"
+    "visualization": "Wizualizacje",
+    "clickToView": "Kliknij aby zobaczyć galerię",
+    "gallery": "Galeria",
+    "underConstruction": "Galeria w budowie",
+    "comingSoon": "Wkrótce dostępna"
   },
   "interests": {
     "title": "Zainteresowania",

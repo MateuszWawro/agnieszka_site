@@ -44,7 +44,11 @@
   "skills": {
     "title": "Skills",
     "designTools": "Design Software",
-    "visualization": "Visualization"
+    "visualization": "Visualization",
+    "clickToView": "Click to view gallery",
+    "gallery": "Gallery",
+    "underConstruction": "Gallery under construction",
+    "comingSoon": "Coming soon"
   },
   "interests": {
     "title": "Interests",
