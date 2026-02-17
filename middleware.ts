@@ -13,6 +13,6 @@ export default createMiddleware({
 });
 
 export const config = {
-  // Nie dopasowuj ścieżek API, Next.js internals i plików statycznych
+  // Do not match API paths, Next.js internals and static files
   matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
