@@ -6,6 +6,12 @@ const withNextIntl = createNextIntlPlugin('./i18n.ts');
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+      allowedOrigins: ['*'],
+    },
+  },
 }
 
 module.exports = withNextIntl(nextConfig);

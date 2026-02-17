@@ -13,6 +13,6 @@ export default createMiddleware({
 });
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(pl|en)/:path*']
+  // Nie dopasowuj ścieżek API, Next.js internals i plików statycznych
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
