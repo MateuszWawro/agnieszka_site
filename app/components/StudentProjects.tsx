@@ -38,7 +38,10 @@ const StudentProjects = () => {
       name: 'WIŚNIOWA OLIWA',
       icon: FaLeaf,
       emoji: '🌳',
-      images: [{ src: '/oliwa.png', alt: 'WIŚNIOWA OLIWA' }],
+      images: [
+        { src: '/oliwa.png', alt: 'WIŚNIOWA OLIWA - 1' },
+        { src: '/oliwa2.png', alt: 'WIŚNIOWA OLIWA - 2' },
+      ],
     },
     {
       id: 'rehabilitation',
