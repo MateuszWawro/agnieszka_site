@@ -4,6 +4,7 @@
     "education": "Education",
     "experience": "Experience",
     "skills": "Skills",
+    "studentProjects": "Student Projects",
     "interests": "Interests",
     "contact": "Contact"
   },
@@ -51,6 +52,13 @@
     "clickToView": "Click to view gallery",
     "gallery": "Gallery",
     "underConstruction": "Gallery under construction",
+    "comingSoon": "Coming soon",
+    "drivingLicense": "Driving License Category B"
+  },
+  "studentProjects": {
+    "title": "Student Projects",
+    "engineeringStudies": "Engineering Studies",
+    "masterStudies": "Master Studies",
     "comingSoon": "Coming soon"
   },
   "interests": {

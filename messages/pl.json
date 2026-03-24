@@ -4,6 +4,7 @@
     "education": "Wykształcenie",
     "experience": "Doświadczenie",
     "skills": "Umiejętności",
+    "studentProjects": "Projekty studenckie",
     "interests": "Zainteresowania",
     "contact": "Kontakt"
   },
@@ -51,6 +52,13 @@
     "clickToView": "Kliknij aby zobaczyć galerię",
     "gallery": "Galeria",
     "underConstruction": "Galeria w budowie",
+    "comingSoon": "Wkrótce dostępna",
+    "drivingLicense": "Prawo jazdy kategoria B"
+  },
+  "studentProjects": {
+    "title": "Projekty studenckie",
+    "engineeringStudies": "Studia inżynierskie",
+    "masterStudies": "Studia magisterskie",
     "comingSoon": "Wkrótce dostępna"
   },
   "interests": {

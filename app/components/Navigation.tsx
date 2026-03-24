@@ -63,6 +63,7 @@ const Navigation = () => {
     { name: t('education'), href: '#education' },
     { name: t('experience'), href: '#experience' },
     { name: t('skills'), href: '#skills' },
+    { name: t('studentProjects'), href: '#student-projects' },
     { name: t('interests'), href: '#interests' },
     { name: t('contact'), href: '#contact' },
   ];

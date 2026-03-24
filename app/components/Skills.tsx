@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { SiAutodesk, SiAutodeskrevit, SiSketchup, SiRhinoceros } from 'react-icons/si';
-import { FaMicrosoft, FaPalette } from 'react-icons/fa';
+import { FaMicrosoft, FaPalette, FaCar } from 'react-icons/fa';
 
 const Skills = () => {
   const t = useTranslations('skills');
@@ -18,6 +18,7 @@ const Skills = () => {
     { name: 'Rhino', icon: SiRhinoceros },
     { name: 'Microsoft Office', icon: FaMicrosoft },
     { name: 'Adobe Suite', icon: FaPalette },
+    { name: t('drivingLicense'), icon: FaCar },
   ];
 
   const visualizationTools = [
