@@ -10,6 +10,7 @@ const StudentProjects = () => {
   const [activeTab, setActiveTab] = useState<'engineering' | 'master'>('engineering');
   const [activeGallery, setActiveGallery] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const engineeringProjects = [
     {
@@ -18,7 +19,7 @@ const StudentProjects = () => {
       icon: FaBuilding,
       emoji: '🏫',
       images: Array.from({ length: 6 }, (_, i) => ({
-        src: `/inz${i + 1}.png`,
+        src: `/inz${i + 1}_PLASKI.png`,
         alt: `Projekt przedszkola - ${i + 1}`,
       })),
     },
@@ -28,7 +29,7 @@ const StudentProjects = () => {
       icon: FaUtensils,
       emoji: '🍽️',
       images: Array.from({ length: 6 }, (_, i) => ({
-        src: `/przeddyplom${i + 1}.png`,
+        src: `/przeddyplom_${i + 1}_PLASKI.png`,
         alt: `Sopot Spot - ${i + 1}`,
       })),
     },
@@ -63,7 +64,11 @@ const StudentProjects = () => {
     },
   ];
 
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+    setActiveGallery(null);
+    setIsImageLoading(false);
+  }, []);
   const prevImage = useCallback(() => {
     setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : prev);
   }, []);
@@ -75,6 +80,7 @@ const StudentProjects = () => {
 
   useEffect(() => {
     if (lightboxIndex === null) return;
+    setIsImageLoading(true);
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') prevImage();
@@ -87,6 +93,23 @@ const StudentProjects = () => {
       window.removeEventListener('keydown', handleKey);
     };
   }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
+
+  // Preload adjacent images for smooth navigation
+  useEffect(() => {
+    if (!activeGallery || lightboxIndex === null) return;
+
+    const currentProject = engineeringProjects.find(p => p.id === activeGallery);
+    if (!currentProject) return;
+
+    const imagesToPreload = [];
+    if (lightboxIndex > 0) imagesToPreload.push(lightboxIndex - 1); // Previous
+    if (lightboxIndex < currentProject.images.length - 1) imagesToPreload.push(lightboxIndex + 1); // Next
+
+    imagesToPreload.forEach((idx) => {
+      const img = new window.Image();
+      img.src = currentProject.images[idx].src;
+    });
+  }, [lightboxIndex, activeGallery, engineeringProjects]);
 
   return (
     <section
@@ -139,6 +162,7 @@ const StudentProjects = () => {
                       onClick={() => {
                         setActiveGallery(project.id);
                         setLightboxIndex(0);
+                        setIsImageLoading(true);
                       }}
                       className="group bg-white dark:bg-gray-700 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-600 flex flex-col items-center text-center cursor-pointer"
                     >
@@ -219,16 +243,27 @@ const StudentProjects = () => {
           {/* Image */}
           {activeGallery && (
             <div
-              className="relative w-[90vw] h-[80vh] max-w-6xl"
+              className="relative w-[90vw] h-[80vh] max-w-6xl bg-black/50 rounded-lg overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
+              {isImageLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/70 z-20">
+                  <div className="animate-spin">
+                    <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </div>
+                </div>
+              )}
               <Image
                 src={engineeringProjects.find(p => p.id === activeGallery)?.images[lightboxIndex]?.src || ''}
                 alt={engineeringProjects.find(p => p.id === activeGallery)?.images[lightboxIndex]?.alt || ''}
                 fill
                 className="object-contain"
                 sizes="90vw"
-                priority
+                priority={true}
+                loading="eager"
+                onLoadingComplete={() => setIsImageLoading(false)}
               />
             </div>
           )}
