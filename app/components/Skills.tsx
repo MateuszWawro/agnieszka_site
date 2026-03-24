@@ -3,6 +3,8 @@
 import { useTranslations } from 'next-intl';
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { SiAutodesk, SiAutodeskrevit, SiSketchup, SiRhinoceros } from 'react-icons/si';
+import { FaMicrosoft, FaPalette } from 'react-icons/fa';
 
 const Skills = () => {
   const t = useTranslations('skills');
@@ -10,12 +12,12 @@ const Skills = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const designSkills = [
-    { name: 'AutoCAD', level: 90 },
-    { name: 'REVIT', level: 85 },
-    { name: 'SketchUp', level: 90 },
-    { name: 'Rhino', level: 75 },
-    { name: 'Microsoft Office', level: 95 },
-    { name: 'Adobe Suite', level: 80 },
+    { name: 'AutoCAD', icon: SiAutodesk },
+    { name: 'REVIT', icon: SiAutodeskrevit },
+    { name: 'SketchUp', icon: SiSketchup },
+    { name: 'Rhino', icon: SiRhinoceros },
+    { name: 'Microsoft Office', icon: FaMicrosoft },
+    { name: 'Adobe Suite', icon: FaPalette },
   ];
 
   const visualizationTools = [
@@ -74,38 +76,40 @@ const Skills = () => {
         <div className="h-1 w-20 md:w-24 bg-gradient-to-r from-primary-dark to-primary mx-auto rounded-full mb-12 md:mb-16"></div>
 
         <div className="max-w-5xl mx-auto">
-          {/* Design Skills with Progress Bars */}
-          <div className="mb-12 md:mb-16">
-            <h3 className="text-xl sm:text-2xl font-bold mb-6 md:mb-8 text-primary-dark dark:text-primary flex items-center gap-2 sm:gap-3">
-              <span className="text-2xl sm:text-3xl">💻</span>
-              {t('designTools')}
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
-              {designSkills.map((skill, index) => (
-                <div key={index} className="space-y-2 group">
-                  <span className="text-sm sm:text-base font-semibold text-dark dark:text-white group-hover:text-primary-dark dark:group-hover:text-primary transition-colors duration-300">
-                    {skill.name}
-                  </span>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 sm:h-3 overflow-hidden shadow-inner">
-                    <div
-                      className="bg-gradient-to-r from-primary-dark via-primary to-primary-dark h-full rounded-full transition-all duration-1000 ease-out hover:shadow-lg relative overflow-hidden"
-                      style={{ width: `${skill.level}%` }}
-                    >
-                      {/* Shimmer effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          {/* Design Skills */}
+          <div className="mb-16 md:mb-20">
+            <div className="text-center mb-10 md:mb-12">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary-dark dark:text-primary inline-flex items-center gap-2 sm:gap-3">
+                <span className="text-3xl sm:text-4xl">💻</span>
+                {t('designTools')}
+              </h3>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+                {designSkills.map((skill, index) => {
+                  const Icon = skill.icon;
+
+                  return (
+                    <li key={index} className="flex flex-col items-center justify-center gap-3 p-5 sm:p-6 md:p-7 bg-white dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-600">
+                      <span className="text-primary-dark dark:text-primary text-3xl sm:text-4xl md:text-5xl" aria-hidden="true">
+                        <Icon size={40} />
+                      </span>
+                      <span className="text-base sm:text-lg md:text-xl font-semibold text-dark dark:text-white text-center">{skill.name}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
 
           {/* Visualization Tools */}
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold mb-3 md:mb-4 text-primary-dark dark:text-primary flex items-center gap-2 sm:gap-3">
-              <span className="text-2xl sm:text-3xl">🎨</span>
-              {t('visualizationAndArt')}
-            </h3>
+            <div className="text-center mb-8 md:mb-10">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary-dark dark:text-primary inline-flex items-center gap-2 sm:gap-3">
+                <span className="text-3xl sm:text-4xl">🎨</span>
+                {t('visualizationAndArt')}
+              </h3>
+            </div>
             <p className="text-center text-sm md:text-base text-gray-600 dark:text-gray-400 mb-6 md:mb-8 flex items-center justify-center gap-2">
               <span className="text-lg">👇</span>
               {t('clickToView')}
