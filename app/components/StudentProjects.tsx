@@ -3,7 +3,6 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
-import { FaBook, FaAward, FaBuilding, FaUtensils, FaLeaf, FaHeartbeat } from 'react-icons/fa';
 
 const StudentProjects = () => {
   const t = useTranslations('studentProjects');
@@ -17,7 +16,6 @@ const StudentProjects = () => {
       id: 'kindergarten',
       name: 'Przyjazne Przedszkole ze strefą warsztatową',
       nameEn: 'Friendly Kindergarten with Workshop Area',
-      icon: FaBuilding,
       emoji: '🏫',
       images: Array.from({ length: 6 }, (_, i) => ({
         src: `/inz${i + 1}_PLASKI.png`,
@@ -28,7 +26,6 @@ const StudentProjects = () => {
       id: 'sopot-spot',
       name: 'Sopot Spot - Restaurant & WELLNESS SPA',
       nameEn: 'Sopot Spot - Restaurant & WELLNESS SPA',
-      icon: FaUtensils,
       emoji: '🍽️',
       images: Array.from({ length: 6 }, (_, i) => ({
         src: `/przeddyplom_${i + 1}_PLASKI.png`,
@@ -39,7 +36,6 @@ const StudentProjects = () => {
       id: 'wisnowa-oliwa',
       name: 'WIŚNIOWA OLIWA',
       nameEn: 'WIŚNIOWA OLIWA',
-      icon: FaLeaf,
       emoji: '🌳',
       images: [
         { src: '/oliwa.png', alt: 'WIŚNIOWA OLIWA - 1' },
@@ -50,9 +46,18 @@ const StudentProjects = () => {
       id: 'rehabilitation',
       name: 'PROJEKT ZAKŁADU REHABILITACJI I FIZJOTERAPII W ZABUDOWIE PLOMBOWEJ - GDYNIA ORŁOWO',
       nameEn: 'REHABILITATION AND PHYSIOTHERAPY FACILITY PROJECT IN PLOMB BUILDING - GDYNIA ORŁOWO',
-      icon: FaHeartbeat,
       emoji: '🏥',
       images: [{ src: '/rehab.png', alt: 'Rehabilitacja' }],
+    },
+  ];
+
+  const masterProjects = [
+    {
+      id: 'conservation',
+      name: 'PROJEKT KONSERWATORSKI - REWITALIZACJA ZAŁOŻENIA FOLWARCZNEGO - DOM SĄSIEDZKI W MŁYM KACKU',
+      nameEn: 'CONSERVATION PROJECT - REVITALIZATION OF FARM COMPLEX - NEIGHBORHOOD HOUSE IN MŁYM KACKO',
+      emoji: '🏛️',
+      images: [{ src: '/konserwacje_1_plaskie.png', alt: 'Projekt Konserwatorski' }],
     },
   ];
 
@@ -60,13 +65,11 @@ const StudentProjects = () => {
     {
       id: 'engineering',
       label: t('engineeringStudies'),
-      icon: FaBook,
       emoji: '📐',
     },
     {
       id: 'master',
       label: t('masterStudies'),
-      icon: FaAward,
       emoji: '📚',
     },
   ];
@@ -79,10 +82,11 @@ const StudentProjects = () => {
     setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : prev);
   }, []);
   const nextImage = useCallback(() => {
-    const currentProject = engineeringProjects.find(p => p.id === activeGallery);
+    const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
+    const currentProject = currentProjects.find(p => p.id === activeGallery);
     const imagesLength = currentProject?.images.length || 0;
     setLightboxIndex(prev => prev !== null && prev < imagesLength - 1 ? prev + 1 : prev);
-  }, [activeGallery, engineeringProjects]);
+  }, [activeGallery, activeTab, engineeringProjects, masterProjects]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -103,7 +107,8 @@ const StudentProjects = () => {
   useEffect(() => {
     if (!activeGallery || lightboxIndex === null) return;
 
-    const currentProject = engineeringProjects.find(p => p.id === activeGallery);
+    const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
+    const currentProject = currentProjects.find(p => p.id === activeGallery);
     if (!currentProject) return;
 
     const imagesToPreload = [];
@@ -114,7 +119,7 @@ const StudentProjects = () => {
       const img = new window.Image();
       img.src = currentProject.images[idx].src;
     });
-  }, [lightboxIndex, activeGallery, engineeringProjects]);
+  }, [lightboxIndex, activeGallery, activeTab, engineeringProjects, masterProjects]);
 
   return (
     <section
@@ -136,7 +141,6 @@ const StudentProjects = () => {
           {/* Tabs */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 mb-8 md:mb-12">
             {tabs.map((tab) => {
-              const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
@@ -160,7 +164,6 @@ const StudentProjects = () => {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 {engineeringProjects.map((project) => {
-                  const Icon = project.icon;
                   return (
                     <button
                       key={project.id}
@@ -173,9 +176,6 @@ const StudentProjects = () => {
                       <div className="text-4xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                         {project.emoji}
                       </div>
-                      <div className="text-primary-dark dark:text-primary mb-3">
-                        <Icon size={32} />
-                      </div>
                       <h4 className="text-base md:text-lg font-bold text-dark dark:text-white leading-snug">
                         {locale === 'pl' ? project.name : project.nameEn}
                       </h4>
@@ -186,17 +186,30 @@ const StudentProjects = () => {
               </div>
             </>
           ) : (
-            <div className="bg-white dark:bg-gray-700 rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl border border-gray-100 dark:border-gray-600 min-h-[400px] flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-7xl md:text-8xl mb-6 opacity-50">📚</div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-gray-300 mb-2">
-                  {t('masterStudies')}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl">
-                  {t('comingSoon')}
-                </p>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                {masterProjects.map((project) => {
+                  return (
+                    <button
+                      key={project.id}
+                      onClick={() => {
+                        setActiveGallery(project.id);
+                        setLightboxIndex(0);
+                      }}
+                      className="group bg-white dark:bg-gray-700 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-600 flex flex-col items-center text-center cursor-pointer"
+                    >
+                      <div className="text-4xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        {project.emoji}
+                      </div>
+                      <h4 className="text-base md:text-lg font-bold text-dark dark:text-white leading-snug">
+                        {locale === 'pl' ? project.name : project.nameEn}
+                      </h4>
+                      <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-3">{locale === 'pl' ? 'Kliknij aby zobaczyć galerię' : 'Click to view gallery'}</p>
+                    </button>
+                  );
+                })}
               </div>
-            </div>
+            </>
           )}
         </div>
       </div>
@@ -232,7 +245,10 @@ const StudentProjects = () => {
           )}
 
           {/* Next arrow */}
-          {activeGallery && lightboxIndex < (engineeringProjects.find(p => p.id === activeGallery)?.images.length || 0) - 1 && (
+          {activeGallery && (() => {
+            const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
+            return lightboxIndex < (currentProjects.find(p => p.id === activeGallery)?.images.length || 0) - 1;
+          })() && (
             <button
               onClick={(e) => { e.stopPropagation(); nextImage(); }}
               className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/30 hover:bg-black/50 rounded-full"
@@ -245,29 +261,37 @@ const StudentProjects = () => {
           )}
 
           {/* Image */}
-          {activeGallery && (
-            <div
-              className="relative w-[90vw] h-[80vh] max-w-6xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={engineeringProjects.find(p => p.id === activeGallery)?.images[lightboxIndex]?.src || ''}
-                alt={engineeringProjects.find(p => p.id === activeGallery)?.images[lightboxIndex]?.alt || ''}
-                fill
-                className="object-contain"
-                sizes="90vw"
-                priority={true}
-                loading="eager"
-              />
-            </div>
-          )}
+          {activeGallery && (() => {
+            const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
+            const currentProject = currentProjects.find(p => p.id === activeGallery);
+            return (
+              <div
+                className="relative w-[90vw] h-[80vh] max-w-6xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={currentProject?.images[lightboxIndex]?.src || ''}
+                  alt={currentProject?.images[lightboxIndex]?.alt || ''}
+                  fill
+                  className="object-contain"
+                  sizes="90vw"
+                  priority={true}
+                  loading="eager"
+                />
+              </div>
+            );
+          })()}
 
           {/* Counter */}
-          {activeGallery && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium bg-black/40 px-4 py-1.5 rounded-full">
-              {lightboxIndex + 1} / {engineeringProjects.find(p => p.id === activeGallery)?.images.length}
-            </div>
-          )}
+          {activeGallery && (() => {
+            const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
+            const currentProject = currentProjects.find(p => p.id === activeGallery);
+            return (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium bg-black/40 px-4 py-1.5 rounded-full">
+                {lightboxIndex + 1} / {currentProject?.images.length}
+              </div>
+            );
+          })()}
         </div>
       )}
     </section>
