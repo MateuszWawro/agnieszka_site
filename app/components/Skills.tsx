@@ -115,12 +115,12 @@ const Skills = () => {
               </h3>
             </div>
             <div className="max-w-3xl mx-auto">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+              <ul className="flex justify-center">
                 {certifications.map((cert, index) => {
                   const Icon = cert.icon;
 
                   return (
-                    <li key={index} className="flex flex-col items-center justify-center gap-3 p-5 sm:p-6 md:p-7 bg-white dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-600">
+                    <li key={index} className="flex flex-col items-center justify-center gap-3 p-5 sm:p-6 md:p-7 bg-white dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-600 w-full max-w-xs">
                       <span className="text-primary-dark dark:text-primary text-3xl sm:text-4xl md:text-5xl" aria-hidden="true">
                         <Icon size={40} />
                       </span>
