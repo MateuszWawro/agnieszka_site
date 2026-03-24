@@ -12,6 +12,7 @@ const StudentProjects = () => {
   const [activeGallery, setActiveGallery] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [modalTab, setModalTab] = useState<'description' | 'gallery'>('description');
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
 
   const engineeringProjects = [
     {
@@ -21,7 +22,7 @@ const StudentProjects = () => {
       emoji: '🏫',
       description: 'Projekt powstał w odpowiedzi na rozwijające się osiedle mieszkaniowe, oferując przedszkole dla najmłodszych mieszkańców, zarazem projekt odpowiada na przyjazność pod wieloma aspektami:\n\n• Przyjazny użytkownikom - dzieciom, które w naturalnym środowisku dorastają lepiej oraz uczą się jak o nie dbać\n\n• Przyjazny środowisku - budynek zaprojektowano w całości w konstrukcji drewnianej, z belek dwuteowych, dodatkowo elewacja budynku zaprojektowana została z drewnianych lameli elewacyjnych 3D, które sprawiają, iż obiekt wtapia się w otaczający krajobraz naturalny\n\n• Przyjazny mieszkańcom - po godzinach pracy placówki oświatowej przedszkole staje się miejscem integracji społeczności lokalnej, która może korzystać z części budynku, zaprojektowanej jako wielofunkcyjna strefa warsztatowa, służąca zarówno przedszkolakom, jak i mieszkańcom do rozwijania ich kreatywności, pasji, zainteresowań, czy integrowania się ze społecznością lokalną.',
       descriptionEn: 'The project was created in response to a developing residential estate, offering a kindergarten for the youngest residents, while also responding to friendliness in many aspects:\n\n• User-friendly - for children who grow up better in natural environment and learn how to care for it\n\n• Eco-friendly - the building was designed entirely in wooden construction, with double-T beams. Additionally, the building\'s elevation was designed with 3D wooden cladding slats, which makes the object blend into the surrounding natural landscape\n\n• Community-friendly - after working hours of the educational facility, the kindergarten becomes a place of integration for the local community, which can use part of the building designed as a multifunctional workshop area, serving both preschoolers and residents to develop their creativity, passions, interests, and to integrate with the local community.',
-      modalType: 'description' as const,
+      modalType: 'split' as const,
       images: Array.from({ length: 6 }, (_, i) => ({
         src: `/inz${i + 1}_PLASKI.png`,
         alt: `Projekt przedszkola - ${i + 1}`,
@@ -74,7 +75,11 @@ const StudentProjects = () => {
       description: 'Projekt konserwacji i rewitalizacji historycznego założenia folwarcznego, ze szczególnym naciskiem na odrestaurowanie Domu Sąsiedzkiego w Młym Kacku. Prace konserwatorskie łączą szacunek do historycznego dziedzictwa z nowoczesnym standardem użytkowania. Projekt zakładał przywrócenie pierwotnych materiałów i formy architektonicznej, jednocześnie adaptując budynek do współczesnych potrzeb społeczności lokalnej.',
       descriptionEn: 'A conservation and revitalization project of a historic farm complex, with particular emphasis on the restoration of the Neighborhood House in Młym Kacko. Conservation works combine respect for historical heritage with modern usage standards. The project involved restoring original materials and architectural form, while adapting the building to the contemporary needs of the local community.',
       modalType: 'description' as const,
-      images: [{ src: '/konserwacje_1_plaskie.png', alt: 'Projekt Konserwatorski' }],
+      images: [
+        { src: '/konserwacje_1_plaskie.png', alt: 'Projekt Konserwatorski - 1' },
+        { src: '/konserwacje_2_plaskie.png', alt: 'Projekt Konserwatorski - 2' },
+        { src: '/konserwacje_3_plaskie.png', alt: 'Projekt Konserwatorski - 3' },
+      ],
     },
   ];
 
@@ -100,6 +105,10 @@ const StudentProjects = () => {
     setSelectedProject(null);
   }, []);
 
+  const closeModalTab = useCallback(() => {
+    setModalTab('description');
+  }, []);
+
   const openGallery = useCallback(() => {
     if (selectedProject) {
       setActiveGallery(selectedProject);
@@ -116,6 +125,11 @@ const StudentProjects = () => {
     const imagesLength = currentProject?.images.length || 0;
     setLightboxIndex(prev => prev !== null && prev < imagesLength - 1 ? prev + 1 : prev);
   }, [activeGallery, activeTab, engineeringProjects, masterProjects]);
+
+  // Reset zoom when image changes
+  useEffect(() => {
+    setZoomLevel(1);
+  }, [lightboxIndex]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -283,24 +297,71 @@ const StudentProjects = () => {
             </button>
           )}
 
-          {/* Image */}
+          {/* Image with Zoom */}
           {activeGallery && (() => {
             const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
             const currentProject = currentProjects.find(p => p.id === activeGallery);
             return (
               <div
-                className="relative w-[90vw] h-[80vh] max-w-6xl"
+                className="relative w-[90vw] h-[80vh] max-w-6xl overflow-hidden rounded-lg"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Image
-                  src={currentProject?.images[lightboxIndex]?.src || ''}
-                  alt={currentProject?.images[lightboxIndex]?.alt || ''}
-                  fill
-                  className="object-contain"
-                  sizes="90vw"
-                  priority={true}
-                  loading="eager"
-                />
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Image
+                    src={currentProject?.images[lightboxIndex]?.src || ''}
+                    alt={currentProject?.images[lightboxIndex]?.alt || ''}
+                    width={1200}
+                    height={800}
+                    className="object-contain transition-transform duration-200"
+                    style={{ transform: `scale(${zoomLevel})` }}
+                    priority={true}
+                    loading="eager"
+                    quality={95}
+                  />
+                </div>
+
+                {/* Zoom Controls */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 bg-black/50 p-3 rounded-full z-20">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setZoomLevel(prev => Math.max(1, prev - 0.2));
+                    }}
+                    className="text-white/70 hover:text-white transition-colors p-2 hover:bg-black/30 rounded-full"
+                    aria-label="Zmniejsz"
+                  >
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" />
+                    </svg>
+                  </button>
+                  <div className="flex items-center px-3 text-white text-sm font-semibold">
+                    {Math.round(zoomLevel * 100)}%
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setZoomLevel(prev => Math.min(3, prev + 0.2));
+                    }}
+                    className="text-white/70 hover:text-white transition-colors p-2 hover:bg-black/30 rounded-full"
+                    aria-label="Powiększ"
+                  >
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setZoomLevel(1);
+                    }}
+                    className="text-white/70 hover:text-white transition-colors p-2 hover:bg-black/30 rounded-full"
+                    aria-label="Reset"
+                  >
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             );
           })()}
