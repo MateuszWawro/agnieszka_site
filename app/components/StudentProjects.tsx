@@ -2,11 +2,38 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { FaBook, FaAward } from 'react-icons/fa';
+import { FaBook, FaAward, FaBuilding, FaUtensils, FaLeaf, FaHeartbeat } from 'react-icons/fa';
 
 const StudentProjects = () => {
   const t = useTranslations('studentProjects');
   const [activeTab, setActiveTab] = useState<'engineering' | 'master'>('engineering');
+
+  const engineeringProjects = [
+    {
+      id: 'kindergarten',
+      name: 'Przyjazne Przedszkole ze strefą warsztatową',
+      icon: FaBuilding,
+      emoji: '🏫',
+    },
+    {
+      id: 'sopot-spot',
+      name: 'Sopot Spot - Restaurant & WELLNESS SPA',
+      icon: FaUtensils,
+      emoji: '🍽️',
+    },
+    {
+      id: 'wisnowa-oliwa',
+      name: 'WIŚNIOWA OLIWA',
+      icon: FaLeaf,
+      emoji: '🌳',
+    },
+    {
+      id: 'rehabilitation',
+      name: 'PROJEKT ZAKŁADU REHABILITACJI I FIZJOTERAPII W ZABUDOWIE PLOMBOWEJ - GDYNIA ORŁOWO',
+      icon: FaHeartbeat,
+      emoji: '🏥',
+    },
+  ];
 
   const tabs = [
     {
@@ -63,21 +90,41 @@ const StudentProjects = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="bg-white dark:bg-gray-700 rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl border border-gray-100 dark:border-gray-600 min-h-[400px] flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-7xl md:text-8xl mb-6 opacity-50">
-                {activeTab === 'engineering' ? '📐' : '📚'}
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-gray-300 mb-2">
-                {activeTab === 'engineering'
-                  ? t('engineeringStudies')
-                  : t('masterStudies')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl">
-                {t('comingSoon')}
-              </p>
+          {activeTab === 'engineering' ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              {engineeringProjects.map((project) => {
+                const Icon = project.icon;
+                return (
+                  <div
+                    key={project.id}
+                    className="group bg-white dark:bg-gray-700 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-600 flex flex-col items-center text-center"
+                  >
+                    <div className="text-4xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                      {project.emoji}
+                    </div>
+                    <div className="text-primary-dark dark:text-primary mb-3">
+                      <Icon size={32} />
+                    </div>
+                    <h4 className="text-base md:text-lg font-bold text-dark dark:text-white leading-snug">
+                      {project.name}
+                    </h4>
+                  </div>
+                );
+              })}
             </div>
-          </div>
+          ) : (
+            <div className="bg-white dark:bg-gray-700 rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl border border-gray-100 dark:border-gray-600 min-h-[400px] flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-7xl md:text-8xl mb-6 opacity-50">📚</div>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-gray-300 mb-2">
+                  {t('masterStudies')}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl">
+                  {t('comingSoon')}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
