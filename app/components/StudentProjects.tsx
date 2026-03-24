@@ -1,21 +1,22 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { FaBook, FaAward, FaBuilding, FaUtensils, FaLeaf, FaHeartbeat } from 'react-icons/fa';
 
 const StudentProjects = () => {
   const t = useTranslations('studentProjects');
+  const locale = useLocale();
   const [activeTab, setActiveTab] = useState<'engineering' | 'master'>('engineering');
   const [activeGallery, setActiveGallery] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const engineeringProjects = [
     {
       id: 'kindergarten',
       name: 'Przyjazne Przedszkole ze strefą warsztatową',
+      nameEn: 'Friendly Kindergarten with Workshop Area',
       icon: FaBuilding,
       emoji: '🏫',
       images: Array.from({ length: 6 }, (_, i) => ({
@@ -26,6 +27,7 @@ const StudentProjects = () => {
     {
       id: 'sopot-spot',
       name: 'Sopot Spot - Restaurant & WELLNESS SPA',
+      nameEn: 'Sopot Spot - Restaurant & WELLNESS SPA',
       icon: FaUtensils,
       emoji: '🍽️',
       images: Array.from({ length: 6 }, (_, i) => ({
@@ -36,6 +38,7 @@ const StudentProjects = () => {
     {
       id: 'wisnowa-oliwa',
       name: 'WIŚNIOWA OLIWA',
+      nameEn: 'WIŚNIOWA OLIWA',
       icon: FaLeaf,
       emoji: '🌳',
       images: [
@@ -46,6 +49,7 @@ const StudentProjects = () => {
     {
       id: 'rehabilitation',
       name: 'PROJEKT ZAKŁADU REHABILITACJI I FIZJOTERAPII W ZABUDOWIE PLOMBOWEJ - GDYNIA ORŁOWO',
+      nameEn: 'REHABILITATION AND PHYSIOTHERAPY FACILITY PROJECT IN PLOMB BUILDING - GDYNIA ORŁOWO',
       icon: FaHeartbeat,
       emoji: '🏥',
       images: [{ src: '/rehab.png', alt: 'Rehabilitacja' }],
@@ -70,7 +74,6 @@ const StudentProjects = () => {
   const closeLightbox = useCallback(() => {
     setLightboxIndex(null);
     setActiveGallery(null);
-    setIsImageLoading(false);
   }, []);
   const prevImage = useCallback(() => {
     setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : prev);
@@ -83,7 +86,6 @@ const StudentProjects = () => {
 
   useEffect(() => {
     if (lightboxIndex === null) return;
-    setIsImageLoading(true);
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') prevImage();
@@ -165,7 +167,6 @@ const StudentProjects = () => {
                       onClick={() => {
                         setActiveGallery(project.id);
                         setLightboxIndex(0);
-                        setIsImageLoading(true);
                       }}
                       className="group bg-white dark:bg-gray-700 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-600 flex flex-col items-center text-center cursor-pointer"
                     >
@@ -176,9 +177,9 @@ const StudentProjects = () => {
                         <Icon size={32} />
                       </div>
                       <h4 className="text-base md:text-lg font-bold text-dark dark:text-white leading-snug">
-                        {project.name}
+                        {locale === 'pl' ? project.name : project.nameEn}
                       </h4>
-                      <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-3">Kliknij aby zobaczyć galerię</p>
+                      <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-3">{locale === 'pl' ? 'Kliknij aby zobaczyć galerię' : 'Click to view gallery'}</p>
                     </button>
                   );
                 })}
@@ -246,18 +247,9 @@ const StudentProjects = () => {
           {/* Image */}
           {activeGallery && (
             <div
-              className="relative w-[90vw] h-[80vh] max-w-6xl bg-black/50 rounded-lg overflow-hidden"
+              className="relative w-[90vw] h-[80vh] max-w-6xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {isImageLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/70 z-20">
-                  <div className="animate-spin">
-                    <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                  </div>
-                </div>
-              )}
               <Image
                 src={engineeringProjects.find(p => p.id === activeGallery)?.images[lightboxIndex]?.src || ''}
                 alt={engineeringProjects.find(p => p.id === activeGallery)?.images[lightboxIndex]?.alt || ''}
@@ -266,7 +258,6 @@ const StudentProjects = () => {
                 sizes="90vw"
                 priority={true}
                 loading="eager"
-                onLoadingComplete={() => setIsImageLoading(false)}
               />
             </div>
           )}
