@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { SiAutodesk, SiAutodeskrevit, SiSketchup, SiRhinoceros } from 'react-icons/si';
-import { FaMicrosoft, FaPalette, FaCar } from 'react-icons/fa';
+import { FaMicrosoft, FaPalette, FaCar, FaAward } from 'react-icons/fa';
 
 const Skills = () => {
   const t = useTranslations('skills');
@@ -18,6 +18,9 @@ const Skills = () => {
     { name: 'Rhino', icon: SiRhinoceros },
     { name: 'Microsoft Office', icon: FaMicrosoft },
     { name: 'Adobe Suite', icon: FaPalette },
+  ];
+
+  const certifications = [
     { name: t('drivingLicense'), icon: FaCar },
   ];
 
@@ -96,6 +99,32 @@ const Skills = () => {
                         <Icon size={40} />
                       </span>
                       <span className="text-base sm:text-lg md:text-xl font-semibold text-dark dark:text-white text-center">{skill.name}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+
+          {/* Certifications & Licenses */}
+          <div className="mb-16 md:mb-20">
+            <div className="text-center mb-10 md:mb-12">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary-dark dark:text-primary inline-flex items-center gap-2 sm:gap-3">
+                <span className="text-3xl sm:text-4xl">🏆</span>
+                {t('certifications')}
+              </h3>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+                {certifications.map((cert, index) => {
+                  const Icon = cert.icon;
+
+                  return (
+                    <li key={index} className="flex flex-col items-center justify-center gap-3 p-5 sm:p-6 md:p-7 bg-white dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-600">
+                      <span className="text-primary-dark dark:text-primary text-3xl sm:text-4xl md:text-5xl" aria-hidden="true">
+                        <Icon size={40} />
+                      </span>
+                      <span className="text-base sm:text-lg md:text-xl font-semibold text-dark dark:text-white text-center">{cert.name}</span>
                     </li>
                   );
                 })}
