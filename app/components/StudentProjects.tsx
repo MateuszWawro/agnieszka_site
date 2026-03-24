@@ -11,7 +11,6 @@ const StudentProjects = () => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [activeGallery, setActiveGallery] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [modalTab, setModalTab] = useState<'description' | 'gallery'>('description');
   const [zoomLevel, setZoomLevel] = useState<number>(1);
 
   const engineeringProjects = [
@@ -35,7 +34,7 @@ const StudentProjects = () => {
       emoji: '🍽️',
       description: 'Zaprojektowano obiekt łączący w sobie funkcje gastronomiczne i rekreacyjno-wypoczynkowe, oferując dużą restaurację nad samym morzem wraz z tarasem widokowym, nad którą zaprojektowany został kompleks WELLNESS & SPA oferujący wielofunkcyjną salę gimnastyczną, basen, masaże, pokoje solarium, sauny oraz jacuzzi z widokiem na morze.\n\nW projekcie ze względu na lokalizację w maksymalny sposób ograniczono powierzchnię przeznaczoną na zaplecze gastronomiczne, wykorzystując wysoką kondygnację restauracyjną z antresolą, w jej świetle zaprojektowano dwukondygnacyjne zaplecze gastronomiczne.\n\nAżurowe panele elewacyjne zapewniają intymność gości SPA, zapewniając przy tym odpowiednie doświetlenie pomieszczeń.',
       descriptionEn: 'A building was designed combining gastronomic and recreational-rest functions, offering a large restaurant directly by the sea with a scenic terrace, above which a WELLNESS & SPA complex was designed offering a multifunctional gymnasium, swimming pool, massages, solarium rooms, saunas and jacuzzi with a sea view.\n\nIn the project, due to its location, the space allocated for the catering back-of-house was minimized to the maximum, utilizing a tall restaurant floor with a mezzanine, in which a two-story catering back-of-house was designed.\n\nPerforated facade panels ensure privacy for SPA guests while providing appropriate lighting to the rooms.',
-      modalType: 'tabs' as const,
+      modalType: 'split' as const,
       images: Array.from({ length: 6 }, (_, i) => ({
         src: `/przeddyplom_${i + 1}_PLASKI.png`,
         alt: `Sopot Spot - ${i + 1}`,
@@ -61,7 +60,7 @@ const StudentProjects = () => {
       emoji: '🏥',
       description: 'Nowoczesny ośrodek rehabilitacji i fizjoterapii wkomponowany w istniejącą zabudowę w Gdyni Orłowie. Projekt łączy funkcjonalność medyczną z komfortem pacjentów, oferując przestrzenie terapeutyczne zaprojektowane z myślą o uzdrowiskowych standardach. Wnętrza zostały zaprojektowane w harmonii z naturalnym otoczeniem, wspierając proces leczenia i regeneracji.',
       descriptionEn: 'A modern rehabilitation and physiotherapy center integrated into existing buildings in Gdynia Orłowo. The project combines medical functionality with patient comfort, offering therapeutic spaces designed according to resort standards. The interiors were designed in harmony with the natural surroundings, supporting the healing and recovery process.',
-      modalType: 'tabs' as const,
+      modalType: 'split' as const,
       images: [{ src: '/rehab.png', alt: 'Rehabilitacja' }],
     },
   ];
@@ -74,7 +73,7 @@ const StudentProjects = () => {
       emoji: '🏛️',
       description: 'Projekt konserwacji i rewitalizacji historycznego założenia folwarcznego, ze szczególnym naciskiem na odrestaurowanie Domu Sąsiedzkiego w Młym Kacku. Prace konserwatorskie łączą szacunek do historycznego dziedzictwa z nowoczesnym standardem użytkowania. Projekt zakładał przywrócenie pierwotnych materiałów i formy architektonicznej, jednocześnie adaptując budynek do współczesnych potrzeb społeczności lokalnej.',
       descriptionEn: 'A conservation and revitalization project of a historic farm complex, with particular emphasis on the restoration of the Neighborhood House in Młym Kacko. Conservation works combine respect for historical heritage with modern usage standards. The project involved restoring original materials and architectural form, while adapting the building to the contemporary needs of the local community.',
-      modalType: 'description' as const,
+      modalType: 'split' as const,
       images: [
         { src: '/konserwacje_1_plaskie.png', alt: 'Projekt Konserwatorski - 1' },
         { src: '/konserwacje_2_plaskie.png', alt: 'Projekt Konserwatorski - 2' },
@@ -104,17 +103,6 @@ const StudentProjects = () => {
   const closeProjectModal = useCallback(() => {
     setSelectedProject(null);
   }, []);
-
-  const closeModalTab = useCallback(() => {
-    setModalTab('description');
-  }, []);
-
-  const openGallery = useCallback(() => {
-    if (selectedProject) {
-      setActiveGallery(selectedProject);
-      setLightboxIndex(0);
-    }
-  }, [selectedProject]);
 
   const prevImage = useCallback(() => {
     setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : prev);
@@ -379,227 +367,79 @@ const StudentProjects = () => {
         </div>
       )}
 
-      {/* Project Modal - Adaptive Layout */}
+      {/* Project Modal - Split Layout */}
       {selectedProject && (() => {
         const currentProjects = activeTab === 'engineering' ? engineeringProjects : masterProjects;
         const project = currentProjects.find(p => p.id === selectedProject);
         const description = locale === 'pl' ? project?.description : project?.descriptionEn;
-        const modalType = project?.modalType || 'description';
 
-        // MODAL TYPE 1: DESCRIPTION (Przedszkole, Conservation)
-        if (modalType === 'description') {
-          return (
+        return (
+          <div
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            onClick={closeProjectModal}
+          >
             <div
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-              onClick={closeProjectModal}
+              className="bg-white dark:bg-gray-800 rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div
-                className="bg-white dark:bg-gray-800 rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 md:px-8 py-6 md:py-8 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="text-4xl md:text-5xl">{project?.emoji}</div>
-                    <h2 className="text-xl md:text-2xl font-bold text-dark dark:text-white">
-                      {locale === 'pl' ? project?.name : project?.nameEn}
-                    </h2>
-                  </div>
-                  <button
-                    onClick={closeProjectModal}
-                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-                    aria-label="Close"
-                  >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+              <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 md:px-8 py-6 md:py-8 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="text-4xl md:text-5xl">{project?.emoji}</div>
+                  <h2 className="text-xl md:text-2xl font-bold text-dark dark:text-white">
+                    {locale === 'pl' ? project?.name : project?.nameEn}
+                  </h2>
                 </div>
+                <button
+                  onClick={closeProjectModal}
+                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
+                  aria-label="Close"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
 
-                <div className="px-6 md:px-8 py-8">
-                  <div className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line mb-8">
+              <div className="flex h-[calc(90vh-120px)]">
+                <div className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-y-auto px-6 md:px-8 py-8">
+                  <div className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line">
                     {description}
                   </div>
-
-                  {project?.images && project.images.length > 0 && (
-                    <button
-                      onClick={openGallery}
-                      className="w-full bg-gradient-to-r from-primary-dark to-primary hover:shadow-lg text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 text-lg"
-                    >
-                      <span>{locale === 'pl' ? '🖼️ Pokaż galerię' : '🖼️ View Gallery'}</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        }
-
-        // MODAL TYPE 2: TABS (Sopot, Rehabilitation)
-        if (modalType === 'tabs') {
-          return (
-            <div
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-              onClick={closeProjectModal}
-            >
-              <div
-                className="bg-white dark:bg-gray-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 md:px-8 py-6 md:py-8 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="text-4xl md:text-5xl">{project?.emoji}</div>
-                    <h2 className="text-xl md:text-2xl font-bold text-dark dark:text-white">
-                      {locale === 'pl' ? project?.name : project?.nameEn}
-                    </h2>
-                  </div>
-                  <button
-                    onClick={closeProjectModal}
-                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-                    aria-label="Close"
-                  >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
                 </div>
 
-                <div className="flex border-b border-gray-200 dark:border-gray-700">
-                  <button
-                    onClick={() => setModalTab('description')}
-                    className={`flex-1 py-4 px-6 font-semibold transition-all ${
-                      modalTab === 'description'
-                        ? 'bg-gradient-to-r from-primary-dark to-primary text-white'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    {locale === 'pl' ? '📄 Opis' : '📄 Description'}
-                  </button>
-                  <button
-                    onClick={() => setModalTab('gallery')}
-                    className={`flex-1 py-4 px-6 font-semibold transition-all ${
-                      modalTab === 'gallery'
-                        ? 'bg-gradient-to-r from-primary-dark to-primary text-white'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    {locale === 'pl' ? '🖼️ Galeria' : '🖼️ Gallery'}
-                  </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto">
-                  {modalTab === 'description' ? (
-                    <div className="px-6 md:px-8 py-8">
-                      <div className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line">
-                        {description}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="px-6 md:px-8 py-8">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {project?.images.map((img, idx) => (
-                          <div
-                            key={idx}
-                            className="cursor-pointer group relative overflow-hidden rounded-2xl bg-gray-200 dark:bg-gray-700 aspect-square"
-                            onClick={() => {
-                              setActiveGallery(selectedProject);
-                              setLightboxIndex(idx);
-                            }}
-                          >
-                            <Image
-                              src={img.src}
-                              alt={img.alt}
-                              fill
-                              className="object-cover group-hover:scale-110 transition-transform duration-300"
-                              priority={idx === 0}
-                              loading={idx === 0 ? 'eager' : 'lazy'}
-                            />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                              <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                              </svg>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        }
-
-        // MODAL TYPE 3: SPLIT (Wiśniowa Oliwa)
-        if (modalType === 'split') {
-          return (
-            <div
-              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-              onClick={closeProjectModal}
-            >
-              <div
-                className="bg-white dark:bg-gray-800 rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 md:px-8 py-6 md:py-8 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="text-4xl md:text-5xl">{project?.emoji}</div>
-                    <h2 className="text-xl md:text-2xl font-bold text-dark dark:text-white">
-                      {locale === 'pl' ? project?.name : project?.nameEn}
-                    </h2>
-                  </div>
-                  <button
-                    onClick={closeProjectModal}
-                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-                    aria-label="Close"
-                  >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-
-                <div className="flex h-[calc(90vh-120px)]">
-                  <div className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-y-auto px-6 md:px-8 py-8">
-                    <div className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line">
-                      {description}
-                    </div>
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto px-6 md:px-8 py-8">
-                    <div className="grid grid-cols-1 gap-4">
-                      {project?.images.map((img, idx) => (
-                        <div
-                          key={idx}
-                          className="cursor-pointer group relative overflow-hidden rounded-2xl bg-gray-200 dark:bg-gray-700 aspect-video"
-                          onClick={() => {
-                            setActiveGallery(selectedProject);
-                            setLightboxIndex(idx);
-                          }}
-                        >
-                          <Image
-                            src={img.src}
-                            alt={img.alt}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-300"
-                            priority={idx === 0}
-                            loading={idx === 0 ? 'eager' : 'lazy'}
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                            <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                            </svg>
-                          </div>
+                <div className="flex-1 overflow-y-auto px-6 md:px-8 py-8">
+                  <div className="grid grid-cols-1 gap-4">
+                    {project?.images.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className="cursor-pointer group relative overflow-hidden rounded-2xl bg-gray-200 dark:bg-gray-700 aspect-video"
+                        onClick={() => {
+                          setActiveGallery(selectedProject);
+                          setLightboxIndex(idx);
+                        }}
+                      >
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-300"
+                          priority={idx === 0}
+                          loading={idx === 0 ? 'eager' : 'lazy'}
+                          quality={95}
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                          </svg>
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          );
-        }
-
-        return null;
+          </div>
+        );
       })()}
     </section>
   );
