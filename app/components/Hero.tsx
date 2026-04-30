@@ -33,7 +33,7 @@ const Hero = () => {
                 {/* Photo */}
                 <div className="absolute inset-2 rounded-full overflow-hidden shadow-2xl">
                   <Image
-                    src="/aga_main.jpg"
+                    src="/aga_nowe.jpg"
                     alt="Agnieszka Wawro"
                     fill
                     quality={100}
